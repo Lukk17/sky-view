@@ -1,0 +1,24 @@
+language: node_js
+sudo: required
+services:
+  - docker
+after_success:
+  - docker build -t sky-view . --no-cache
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker tag sky lukk17/sky-view
+  - docker push lukk17/sky-view
+  - docker images
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-west-2
+  app: Sky-view
+  env: Sky-view-env
+  bucket_name: sky-view
+  bucket_path: sky-view
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY

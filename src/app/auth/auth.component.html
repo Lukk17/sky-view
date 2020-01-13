@@ -4,7 +4,7 @@
       <div class="alert-danger" *ngIf="error">
         <p>{{error}}</p>
       </div>
-      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+      <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
         <div class="form-group">
           <label for="email">email</label>
           <input type="email"
