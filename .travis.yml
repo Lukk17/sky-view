@@ -1,17 +1,14 @@
+dist: trusty
 sudo: required
-services:
-  - docker
-
-branches:
-  only:
-    - master
-
-after_success:
-  - docker build -t sky-view . --no-cache
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker tag sky lukk17/sky-view
-  - docker push lukk17/sky-view
-  - docker images
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - docker build -t sky-view . --no-cache
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+      - docker tag sky lukk17/sky-view
+      - docker push lukk17/sky-view
+      - docker images
 
 deploy:
   provider: elasticbeanstalk
