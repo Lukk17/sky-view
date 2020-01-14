@@ -6,7 +6,7 @@ jobs:
       script:
       - docker build -t sky-view . --no-cache
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-      - docker tag sky lukk17/sky-view
+      - docker tag sky-view lukk17/sky-view
       - docker push lukk17/sky-view
       - docker images
 
