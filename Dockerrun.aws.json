@@ -4,7 +4,6 @@
     {
       "name": "sky-view",
       "image": "lukk17/sky-view",
-      "hostname": "sky-view",
       "essential": true,
       "memoryReservation": 128,
       "portMappings": [
