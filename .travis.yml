@@ -1,23 +1,11 @@
-language: node_js
-
-node_js:
-  - 13
-
-addons:
-  chrome: stable
-
+language: java
 sudo: required
-
 services:
   - docker
-  - xvfb
 
 branches:
   only:
     - master
-
-before_install:
-  - export CHROME_BIN=chromium-browser
 
 after_success:
   - docker build -t sky-view . --no-cache
