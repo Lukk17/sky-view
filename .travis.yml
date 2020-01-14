@@ -4,10 +4,15 @@ node_js:
 addons:
   chrome: stable
 
+sudo: required
+
+services:
+  - docker
+  - xvfb
+
 branches:
   only:
     - master
-
 before_install:
   - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
   - sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
@@ -20,10 +25,6 @@ before_install:
 script:
   - npm run test -- --watch=false --progress=false --browsers=ChromeHeadlessCI
 
-sudo: required
-
-services:
-  - docker
 
 after_success:
   - docker build -t sky-view . --no-cache
