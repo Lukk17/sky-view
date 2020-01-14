@@ -14,7 +14,7 @@ deploy:
   provider: elasticbeanstalk
   region: eu-west-2
   app: Sky-view
-  env: Sky-view-env
+  env: SkyView-envi
   bucket_name: sky-view
   bucket_path: sky-view
   on:
