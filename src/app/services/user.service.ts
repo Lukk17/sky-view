@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {AuthService} from "./auth.service";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError, tap} from "rxjs/operators";
 import {throwError} from "rxjs";
 
@@ -29,13 +29,20 @@ export class UserService {
   }
 
   getAllUsers() {
-    const userListURL = 'http://sky-env.kj3kemztrq.eu-west-2.elasticbeanstalk.com/userList';
-    return this.http.get<User[]>(userListURL).pipe(
-      catchError(this.handleError),
-      tap(respData => {
-        this.handleResponse(respData);
+    // const userListURL = 'http://sky-env.kj3kemztrq.eu-west-2.elasticbeanstalk.com/userList';
+    const userListURL = 'http://localhost:5555/userList';
+    const email = this.auth.user.value.email;
+    const password = this.auth.user.value.password;
+    return this.http
+      .get<User[]>(userListURL,{
+        headers: new HttpHeaders({Authorization: 'Basic ' + btoa(email + ":" + password)})
       })
-    );
+      .pipe(
+        catchError(this.handleError),
+        tap(respData => {
+          this.handleResponse(respData);
+        })
+      );
   }
 
   private handleError(errorResp: HttpErrorResponse) {

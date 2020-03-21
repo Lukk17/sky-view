@@ -27,12 +27,7 @@ import {InterceptorService} from "./services/interceptor.service";
     FormsModule,
   ],
   providers: [
-    AuthGuard,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
-      multi: true
-    },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
