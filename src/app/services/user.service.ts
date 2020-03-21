@@ -29,12 +29,12 @@ export class UserService {
   }
 
   getAllUsers() {
-    // const userListURL = 'http://sky-env.kj3kemztrq.eu-west-2.elasticbeanstalk.com/userList';
-    const userListURL = 'http://localhost:5555/userList';
+    const userListURL = AuthService.BASIC_ADDRESS + '/userList';
+
     const email = this.auth.user.value.email;
     const password = this.auth.user.value.password;
     return this.http
-      .get<User[]>(userListURL,{
+      .get<User[]>(userListURL, {
         headers: new HttpHeaders({Authorization: 'Basic ' + btoa(email + ":" + password)})
       })
       .pipe(
