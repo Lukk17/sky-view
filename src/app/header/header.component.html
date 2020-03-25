@@ -4,9 +4,9 @@
     <div class="collapse navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
       <ul class="nav navbar-nav">
         <li>
-          <form class="navbar-form navbar-left" role="search">
+          <form #searchForm="ngForm" class="navbar-form navbar-left" (ngSubmit)="search(searchForm)">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" class="form-control" placeholder="Search" name="search" ngModel>
             </div>
             <button type="submit" class="btn btn-default">
               <span class="glyphicon glyphicon-search"></span>

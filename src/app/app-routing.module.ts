@@ -7,6 +7,7 @@ import {HelloComponent} from "./hello/hello.component";
 import {MyOffersComponent} from "./offer/myOffers/myOffers.component";
 import {AddOfferComponent} from "./offer/add-offer/add-offer.component";
 import {UserDetailsComponent} from "./user/user-details/user-details.component";
+import {OfferSearchComponent} from "./offer/offer-search/offer-search.component";
 
 const routes: Routes = [
   {path: '', redirectTo: "/home", pathMatch: "full"},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'myOffers', component: MyOffersComponent},
   {path: 'addOffer', component: AddOfferComponent},
   {path: 'userDetails', component: UserDetailsComponent},
+  {path: 'offerSearch', component: OfferSearchComponent},
   {
     path: 'userList',
     component: UserListComponent,

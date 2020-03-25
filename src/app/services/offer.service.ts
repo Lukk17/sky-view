@@ -14,6 +14,8 @@ export class OfferService implements OnInit {
   urlMyOffers = AuthService.BASIC_ADDRESS + "/getOwnedOffers";
   urlAddOffer = AuthService.BASIC_ADDRESS + "/addOffer";
   urlDeleteOffer = AuthService.BASIC_ADDRESS + "/deleteOffer";
+  urlSearchOffer = AuthService.BASIC_ADDRESS + "/search";
+  searched: Offer[];
 
   constructor(private http: HttpClient, private auth: AuthService) {
   }
@@ -31,12 +33,10 @@ export class OfferService implements OnInit {
   }
 
   public getMyOffers() {
-    const email = this.auth.user.value.email;
-    const password = this.auth.user.value.password;
     return this.http
       .get(this.urlMyOffers,
         {
-          headers: new HttpHeaders({Authorization: 'Basic ' + btoa(email + ":" + password)})
+          headers: this.getAuthHeader()
         })
       .pipe(
         catchError(OfferService.handleError),
@@ -44,43 +44,40 @@ export class OfferService implements OnInit {
       )
   }
 
-
-  private static handleError(errorResp: HttpErrorResponse) {
-    return throwError(errorResp.error.error.message);
+  public searchOffer(searched: string) {
+    return this.http
+      .post(this.urlSearchOffer,
+        searched
+      )
+      .pipe(
+        catchError(OfferService.handleError),
+        tap(OfferService.handleResponse)
+      )
   }
-
-  private static handleResponse(respData: Offer[]) {
-    const offers: Offer[] = [];
-    for (const key in respData) {
-      offers.push(respData[key])
-    }
-    return offers;
-  }
-
 
   public addOffer(offerForm: NgForm) {
-    const email = this.auth.user.value.email;
-    const pass = this.auth.user.value.password;
     const offer = OfferService.buildOffer(offerForm);
 
-    console.log(offer);
     return this.http.post(this.urlAddOffer,
       offer,
       {
-        headers: new HttpHeaders({Authorization: 'Basic ' + btoa(email + ":" + pass)})
+        headers: this.getAuthHeader()
       });
   }
 
   public deleteOffer(id: number) {
+    return this.http.request('DELETE', this.urlDeleteOffer,
+      {
+        headers: this.getAuthHeader(),
+        body: id
+      });
+  }
+
+  private getAuthHeader() {
     const email = this.auth.user.value.email;
     const pass = this.auth.user.value.password;
 
-
-    return this.http.request('DELETE', this.urlDeleteOffer,
-      {
-        headers: new HttpHeaders({Authorization: 'Basic ' + btoa(email + ":" + pass)}),
-        body: id
-      });
+    return new HttpHeaders({Authorization: 'Basic ' + btoa(email + ":" + pass)})
   }
 
   private static buildOffer(offerForm: NgForm) {
@@ -95,6 +92,17 @@ export class OfferService implements OnInit {
     );
   }
 
+  private static handleError(errorResp: HttpErrorResponse) {
+    return throwError(errorResp.error.error.message);
+  }
+
+  private static handleResponse(respData: Offer[]) {
+    const offers: Offer[] = [];
+    for (const key in respData) {
+      offers.push(respData[key])
+    }
+    return offers;
+  }
 
 }
 

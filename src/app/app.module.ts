@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MyOffersComponent} from './offer/myOffers/myOffers.component';
 import {AddOfferComponent} from './offer/add-offer/add-offer.component';
 import { UserDetailsComponent } from './user/user-details/user-details.component';
+import { OfferSearchComponent } from './offer/offer-search/offer-search.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UserDetailsComponent } from './user/user-details/user-details.component
     HelloComponent,
     MyOffersComponent,
     AddOfferComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    OfferSearchComponent
   ],
   imports: [
     BrowserModule,

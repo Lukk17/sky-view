@@ -2,8 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
-import {AuthComponent} from "../auth/auth.component";
-import {MatDialog} from "@angular/material/dialog";
+import {NgForm} from "@angular/forms";
+import {OfferService} from "../services/offer.service";
 
 @Component({
   selector: 'app-header',
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthService,
-    private dialog: MatDialog
+    private offerService: OfferService
   ) {
   }
 
@@ -46,18 +46,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.auth.logout();
   }
 
-  login() {
-
-    let dialogRef = this.dialog.open(AuthComponent, {
-      height: '400px',
-      width: '600px',
-      hasBackdrop: true,
-      autoFocus: true,
-
-    });
-  }
-
   ngOnDestroy(): void {
   }
 
+  search(searchForm: NgForm) {
+    this.offerService.searchOffer(searchForm.value.search).subscribe(offers => {
+      this.offerService.searched = offers;
+      this.router.navigate(['/offerSearch'])
+    });
+  }
 }
