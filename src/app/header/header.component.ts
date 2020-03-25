@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   collapsed = true;
   private userSub: Subscription;
   isAuth = false;
+  userEmail: string;
 
   constructor(
     private router: Router,
@@ -28,6 +29,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       // true if there is user, false if there is not
       this.isAuth = !!user
     });
+    if (this.isAuth) {
+      this.userEmail = this.auth.user.value.email;
+    }
   }
 
   routeToHome() {

@@ -26,7 +26,7 @@ export class UserListComponent implements OnInit {
     this.getUsers();
   }
 
-  getUsers() {
+  private getUsers() {
     this.userService.getAllUsers().subscribe(users => {
       this.users = users;
     }, error => {

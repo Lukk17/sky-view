@@ -13,10 +13,10 @@ export interface AuthResponseData {
 @Injectable({providedIn: 'root'})
 export class AuthService {
   private LOCAL_STORAGE_USERDATA = 'userData';
-  // static BASIC_ADDRESS = "http://sky-env.kj3kemztrq.eu-west-2.elasticbeanstalk.com";
+  static BASIC_ADDRESS = "http://sky-env.kj3kemztrq.eu-west-2.elasticbeanstalk.com";
 
   // for local testing
-  static BASIC_ADDRESS = "http://localhost:5555";
+  // static BASIC_ADDRESS = "http://localhost:5555";
 
   private signUpURL = AuthService.BASIC_ADDRESS + '/registration';
   private logInURL = AuthService.BASIC_ADDRESS + '/login';

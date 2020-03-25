@@ -18,6 +18,9 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active" *ngIf="isAuth">
+          <a routerLink="/userDetails">{{userEmail}}</a>
+        </li>
         <li routerLinkActive="active">
           <a routerLink="/home">Home</a>
         </li>

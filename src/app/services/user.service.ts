@@ -13,36 +13,59 @@ export interface UserResponseData {
   sentMessage: object
 }
 
-class User {
+export class User {
   email: string;
   id: string;
   password: string;
-  roles: object;
+  roles: {
+    id: number;
+    name: string;
+  };
   receivedMessage: object;
   sentMessage: object;
 }
 
 @Injectable({providedIn: 'root'})
 export class UserService {
+  private userListURL = AuthService.BASIC_ADDRESS + '/userList';
+  private userDetailsURL = AuthService.BASIC_ADDRESS + '/userDetails';
 
   constructor(private http: HttpClient, private auth: AuthService) {
   }
 
-  getAllUsers() {
-    const userListURL = AuthService.BASIC_ADDRESS + '/userList';
+  public getAllUsers() {
 
-    const email = this.auth.user.value.email;
-    const password = this.auth.user.value.password;
     return this.http
-      .get<User[]>(userListURL, {
-        headers: new HttpHeaders({Authorization: 'Basic ' + btoa(email + ":" + password)})
-      })
+      .get<User[]>(this.userListURL,
+        {
+          headers: this.getAuthHeader()
+        })
       .pipe(
         catchError(UserService.handleError),
-        tap(respData => {
-          UserService.handleResponse(respData);
+        tap(UserService.handleResponse)
+      );
+  }
+
+  public getUserDetails() {
+
+    return this.http
+      .get<User>(this.userDetailsURL,
+        {
+          headers: this.getAuthHeader()
+        })
+      .pipe(
+        catchError(UserService.handleError),
+        tap(user => {
+          return user;
         })
       );
+
+  }
+
+  private getAuthHeader() {
+    const email = this.auth.user.value.email;
+    const password = this.auth.user.value.password;
+    return new HttpHeaders({Authorization: 'Basic ' + btoa(email + ":" + password)})
   }
 
   private static handleError(errorResp: HttpErrorResponse) {
@@ -56,4 +79,5 @@ export class UserService {
     }
     return users;
   }
+
 }
