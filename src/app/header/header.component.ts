@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../services/auth.service";
+import {AuthComponent} from "../auth/auth.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-header',
@@ -16,7 +18,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private auth: AuthService
+    private auth: AuthService,
+    private dialog: MatDialog
   ) {
   }
 
@@ -37,6 +40,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
     this.auth.logout();
+  }
+
+  login() {
+
+    let dialogRef = this.dialog.open(AuthComponent, {
+      height: '400px',
+      width: '600px',
+      hasBackdrop: true,
+      autoFocus: true,
+
+    });
   }
 
   ngOnDestroy(): void {

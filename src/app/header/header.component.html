@@ -3,28 +3,35 @@
     <a class="navbar-brand" (click)="routeToHome()">Sky</a>
     <div class="collapse navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
       <ul class="nav navbar-nav">
-        <!--   routerLinkActive will add CSS class when this route is active     -->
+        <li>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </form>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/addOffer">Add Offer</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <li routerLinkActive="active">
           <a routerLink="/home">Home</a>
         </li>
-        <li routerLinkActive="active">
+        <li routerLinkActive="active" *ngIf="isAuth">
+          <a routerLink="/myOffers">My Offers</a>
+        </li>
+        <li routerLinkActive="active" *ngIf="isAuth">
           <a routerLink="/userList">userList</a>
         </li>
         <li routerLinkActive="active" *ngIf="!isAuth">
-          <a routerLink="/auth">auth</a>
+          <a routerLink="/auth">Login</a>
         </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
         <li>
           <a style="cursor: pointer" (click)="logout()" *ngIf="isAuth">Logout</a>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown" appDropdown>
-          <a class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a>menu</a></li>
-          </ul>
         </li>
       </ul>
     </div>

@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Offer, OfferService} from "../services/offer.service";
+
 
 @Component({
   selector: 'app-hello',
@@ -7,10 +9,22 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HelloComponent implements OnInit {
 
-  constructor() {
+  offers: Offer[];
+  error = null;
+
+  constructor(private offerService: OfferService) {
   }
 
   ngOnInit() {
+    this.getAllOffers();
+  }
+
+  getAllOffers() {
+    this.offerService.getAllOffers().subscribe(offers => {
+      this.offers = offers;
+    }, error => {
+      this.error = error.message;
+    });
   }
 
 }

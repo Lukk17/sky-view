@@ -6,11 +6,15 @@ import {AppComponent} from './app.component';
 import {AuthComponent} from './auth/auth.component';
 import {HeaderComponent} from './header/header.component';
 import {AuthGuard} from "./auth/auth.guard";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
-import {UserListComponent} from './user-list/user-list.component';
+import {UserListComponent} from './user/userList/userList.component';
 import {HelloComponent} from './hello/hello.component';
-import {InterceptorService} from "./services/interceptor.service";
+import {MatDialogModule} from '@angular/material/dialog';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MyOffersComponent} from './offer/myOffers/myOffers.component';
+import {AddOfferComponent} from './offer/add-offer/add-offer.component';
+import { UserDetailsComponent } from './user/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +22,18 @@ import {InterceptorService} from "./services/interceptor.service";
     HeaderComponent,
     AuthComponent,
     UserListComponent,
-    HelloComponent
+    HelloComponent,
+    MyOffersComponent,
+    AddOfferComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     AuthGuard
@@ -32,4 +41,9 @@ import {InterceptorService} from "./services/interceptor.service";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
+//  need to install angular material lib to use import:
+//  import {MatDialogModule} from '@angular/material/dialog';
+
+//  npm install --save @angular/material @angular/cdk
 }

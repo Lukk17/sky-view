@@ -38,21 +38,22 @@ export class UserService {
         headers: new HttpHeaders({Authorization: 'Basic ' + btoa(email + ":" + password)})
       })
       .pipe(
-        catchError(this.handleError),
+        catchError(UserService.handleError),
         tap(respData => {
-          this.handleResponse(respData);
+          UserService.handleResponse(respData);
         })
       );
   }
 
-  private handleError(errorResp: HttpErrorResponse) {
+  private static handleError(errorResp: HttpErrorResponse) {
     return throwError(errorResp.error.error.message);
   }
 
-  private handleResponse(respData: User[]) {
-    const postsArray: User[] = [];
+  private static handleResponse(respData: User[]) {
+    const users: User[] = [];
     for (const key in respData) {
-      postsArray.push(respData[key])
+      users.push(respData[key])
     }
+    return users;
   }
 }

@@ -11,6 +11,8 @@
         <p class="list-group-item-text">{{offer.photoPath}}</p>
         <p class="list-group-item-text">{{offer.roomCapacity}}</p>
         <p class="list-group-item-text">{{offer.price}}</p>
+        <p class="list-group-item-text">{{offer.id}}</p>
+        <button class="btn btn-danger" (click)="deleteOffer(offer.id)">Delete</button>
       </div>
     </a>
   </div>

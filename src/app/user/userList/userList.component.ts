@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../services/user.service";
+import {UserService} from "../../services/user.service";
 
 class User {
   email: string;
@@ -12,8 +12,8 @@ class User {
 
 @Component({
   selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  templateUrl: './userList.component.html',
+  styleUrls: ['./userList.component.css']
 })
 export class UserListComponent implements OnInit {
   users: User[];
