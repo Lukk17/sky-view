@@ -15,7 +15,9 @@ export class OfferService implements OnInit {
   urlAddOffer = AuthService.BASIC_ADDRESS + "/addOffer";
   urlDeleteOffer = AuthService.BASIC_ADDRESS + "/deleteOffer";
   urlSearchOffer = AuthService.BASIC_ADDRESS + "/search";
+  private urlEditOffer = AuthService.BASIC_ADDRESS + "/edit";
   searched: Offer[];
+  editedOffer: Offer;
 
   constructor(private http: HttpClient, private auth: AuthService) {
   }
@@ -65,6 +67,17 @@ export class OfferService implements OnInit {
       });
   }
 
+  editOffer(offerForm: NgForm) {
+    const offer = OfferService.buildOffer(offerForm);
+    offer.id = this.editedOffer.id;
+
+    return this.http.put(this.urlEditOffer,
+      offer,
+      {
+        headers: this.getAuthHeader()
+      });
+  }
+
   public deleteOffer(id: number) {
     return this.http.request('DELETE', this.urlDeleteOffer,
       {
@@ -101,15 +114,15 @@ export class OfferService implements OnInit {
     for (const key in respData) {
       offers.push(respData[key])
     }
+    console.log(offers)
     return offers;
   }
-
 }
 
 export class Offer {
 
-  constructor(name: string, description: string, price: number, roomCapacity: number, city: string, country: string, photoPath: string) {
-    this.name = name;
+  constructor(hotelName: string, description: string, price: number, roomCapacity: number, city: string, country: string, photoPath: string) {
+    this.hotelName = hotelName;
     this.description = description;
     this.price = price;
     this.roomCapacity = roomCapacity;
@@ -119,7 +132,7 @@ export class Offer {
   }
 
   "id": number;
-  "name": string;
+  "hotelName": string;
   "description": string;
   "comment": string;
   "price": number;

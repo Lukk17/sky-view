@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "../services/auth.service";
+import {AuthService, Role} from "../services/auth.service";
 import {NgForm} from "@angular/forms";
 import {OfferService} from "../services/offer.service";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-header',
@@ -15,12 +16,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private userSub: Subscription;
   isAuth = false;
   userEmail: string;
+  isAdmin = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthService,
-    private offerService: OfferService
+    private offerService: OfferService,
+    private userService: UserService
   ) {
   }
 
@@ -29,9 +32,29 @@ export class HeaderComponent implements OnInit, OnDestroy {
       // true if there is user, false if there is not
       this.isAuth = !!user
     });
+    // without subscribing after logout and login header mail wasn't update and show previous logged user's email
+    this.auth.loggedEmail.subscribe(email => {
+      this.userEmail = email;
+      this.checkIfAdmin();
+    });
     if (this.isAuth) {
       this.userEmail = this.auth.user.value.email;
+      this.checkIfAdmin();
+      console.log(this.isAdmin)
     }
+  }
+
+  checkIfAdmin() {
+    this.userService.getUserDetails().subscribe(user => {
+        this.isAdmin = false;
+        const roles: Role[] = <Role[]><unknown>user.roles;
+        roles.forEach(role => {
+          if (role.name == "ADMIN") {
+            this.isAdmin = true;
+          }
+        });
+      }
+    )
   }
 
   routeToHome() {
@@ -43,6 +66,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout() {
+    this.isAdmin = false;
     this.auth.logout();
   }
 
@@ -56,3 +80,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 }
+

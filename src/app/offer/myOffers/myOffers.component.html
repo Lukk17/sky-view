@@ -2,7 +2,7 @@
   <div class="col-xs-12">
     <a class="list-group-item clearfix" *ngFor="let offer of offers">
       <div class="pull-left">
-        <h4 class="list-group-item-heading"> {{offer.name}}</h4>
+        <h4 class="list-group-item-heading"> {{offer.hotelName}}</h4>
         <p class="list-group-item-text">{{offer.description}}</p>
         <p class="list-group-item-text">{{offer.city}}</p>
         <p class="list-group-item-text">{{offer.country}}</p>
@@ -13,6 +13,7 @@
         <p class="list-group-item-text">{{offer.price}}</p>
         <p class="list-group-item-text">{{offer.id}}</p>
         <button class="btn btn-danger" (click)="deleteOffer(offer.id)">Delete</button>
+        <button class="btn btn-warning" (click)="editOffer(offer)">Edit</button>
       </div>
     </a>
   </div>

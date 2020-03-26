@@ -16,6 +16,8 @@ import {MyOffersComponent} from './offer/myOffers/myOffers.component';
 import {AddOfferComponent} from './offer/add-offer/add-offer.component';
 import { UserDetailsComponent } from './user/user-details/user-details.component';
 import { OfferSearchComponent } from './offer/offer-search/offer-search.component';
+import { EditOfferComponent } from './offer/edit-offer/edit-offer.component';
+import { OfferDetailsComponent } from './offer/offer-details/offer-details.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { OfferSearchComponent } from './offer/offer-search/offer-search.componen
     MyOffersComponent,
     AddOfferComponent,
     UserDetailsComponent,
-    OfferSearchComponent
+    OfferSearchComponent,
+    EditOfferComponent,
+    OfferDetailsComponent
   ],
   imports: [
     BrowserModule,

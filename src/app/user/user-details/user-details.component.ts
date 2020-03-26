@@ -20,7 +20,6 @@ export class UserDetailsComponent implements OnInit {
 
   private getUserDetails() {
     this.userService.getUserDetails().subscribe(user => {
-        console.log(user)
         this.user.email = user.email;
         this.user.id = user.id;
         this.user.roles = user.roles[0];

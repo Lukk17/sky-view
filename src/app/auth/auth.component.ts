@@ -44,6 +44,7 @@ export class AuthComponent implements OnInit {
 
     authObs.subscribe(response => {
         console.log(response);
+        this.authService.loggedEmail.next(this.authService.user.value.email);
         this.router.navigate(['/']);
       },
       errorMessage => {

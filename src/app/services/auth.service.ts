@@ -1,13 +1,18 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError, tap} from "rxjs/operators";
-import {BehaviorSubject, throwError} from "rxjs";
+import {BehaviorSubject, Subject, throwError} from "rxjs";
 import {User} from "../auth/user.model";
 import {Router} from "@angular/router";
 
 export interface AuthResponseData {
   email: string,
   id: string,
+}
+
+export class Role {
+  id: number;
+  name: string;
 }
 
 @Injectable({providedIn: 'root'})
@@ -23,6 +28,8 @@ export class AuthService {
 
   // behavior subject remember last value even before it was created
   user = new BehaviorSubject<User>(null);
+
+  loggedEmail: Subject<string> = new Subject<string>();
 
   constructor(
     private http: HttpClient,

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Offer, OfferService} from "../../services/offer.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-my-offers',
@@ -10,7 +11,7 @@ export class MyOffersComponent implements OnInit {
   offers: Offer[];
   error = null;
 
-  constructor(private offerService: OfferService) {
+  constructor(private offerService: OfferService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -35,5 +36,10 @@ export class MyOffersComponent implements OnInit {
 
   handleError(error) {
     this.error = error.message;
+  }
+
+  editOffer(offer: Offer) {
+    this.offerService.editedOffer = offer;
+    this.router.navigate(['/editOffer'])
   }
 }
