@@ -1,1 +1,12 @@
-<p>offer-details works!</p>
+<img src={{offer.photoPath}} alt="Card image cap">
+
+<h3 class="card-title">{{offer.hotelName}}</h3>
+<p class="card-text">{{offer.description}}</p>
+<p class="card-text">City: {{offer.city}}</p>
+<p class="card-text">Country: {{offer.country}}</p>
+<p class="card-text">Owner: {{offer.ownerEmail}}</p>
+<p class="card-text">Comment: {{offer.comment}}</p>
+<p class="card-text">Room capacity: {{offer.roomCapacity}}</p>
+<p class="card-text">Price: {{offer.price}}</p>
+
+<button class="btn btn-danger" (click)="deleteOffer(offer.id)" *ngIf="isOwner">Delete</button>

@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  background-color: #121212 !important;
+}
+
+body {
+  background-color: #121212 !important;
+  color: #BCC9D3 !important;
+}
+
+.card {
+  background-color: #323232;
+  margin: 10px !important;
+  width: 90% !important;
+  color: #BCC9D3;
+}
+
+.activeMy {
+  background-color: #0195fe !important;
+}
+
+
+.navbar-default .navbar-nav > li > a {
+  color: #FFDE03 !important;
+  font-weight: bold !important;
+}
+
+.navbar-default .navbar-brand {
+  color: #FFDE03 !important;
+  font-weight: bold !important;
+}
+
+nav {
+  background-color: #0C74DC !important;
+}
+
+.center {
+  margin: auto;
+  width: 30%;
+  padding: 10px;
+}
+
+.image {
+  width: auto;
+  max-height: 20vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: repeat(3, 30%);
+  grid-gap: 50px;
+  grid-auto-flow: column;
+}

@@ -13,24 +13,24 @@
             </button>
           </form>
         </li>
-        <li routerLinkActive="active" *ngIf="isAuth">
+        <li routerLinkActive="activeMy" *ngIf="isAuth">
           <a routerLink="/addOffer">Add Offer</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li routerLinkActive="active" *ngIf="isAuth">
+        <li routerLinkActive="activeMy" *ngIf="isAuth">
           <a routerLink="/userDetails">{{userEmail}}</a>
         </li>
-        <li routerLinkActive="active">
+        <li routerLinkActive="activeMy">
           <a routerLink="/home">Home</a>
         </li>
-        <li routerLinkActive="active" *ngIf="isAuth">
+        <li routerLinkActive="activeMy" *ngIf="isAuth">
           <a routerLink="/myOffers">My Offers</a>
         </li>
-        <li routerLinkActive="active" *ngIf="isAdmin">
+        <li routerLinkActive="activeMy" *ngIf="isAdmin">
           <a routerLink="/userList">userList</a>
         </li>
-        <li routerLinkActive="active" *ngIf="!isAuth">
+        <li routerLinkActive="activeMy" *ngIf="!isAuth">
           <a routerLink="/auth">Login</a>
         </li>
         <li>

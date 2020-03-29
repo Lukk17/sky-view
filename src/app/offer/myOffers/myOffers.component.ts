@@ -26,14 +26,6 @@ export class MyOffersComponent implements OnInit {
     );
   }
 
-  deleteOffer(id: number) {
-    this.offerService.deleteOffer(id).subscribe(() => {
-        this.getMyOffers();
-      },
-      this.handleError
-    );
-  }
-
   handleError(error) {
     this.error = error.message;
   }
@@ -41,5 +33,10 @@ export class MyOffersComponent implements OnInit {
   editOffer(offer: Offer) {
     this.offerService.editedOffer = offer;
     this.router.navigate(['/editOffer'])
+  }
+
+  goToDetails(offer: Offer) {
+    this.offerService.detailedOffer = offer;
+    this.router.navigate(["/offerDetails"])
   }
 }

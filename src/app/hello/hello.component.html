@@ -1,17 +1,46 @@
-<div class="row">
-  <div class="col-xs-12">
-    <a class="list-group-item clearfix" *ngFor="let offer of offers">
-      <div class="pull-left">
-        <h4 class="list-group-item-heading"> {{offer.hotelName}}</h4>
-        <p class="list-group-item-text">{{offer.description}}</p>
-        <p class="list-group-item-text">{{offer.city}}</p>
-        <p class="list-group-item-text">{{offer.country}}</p>
-        <p class="list-group-item-text">{{offer.ownerEmail}}</p>
-        <p class="list-group-item-text">{{offer.comment}}</p>
-        <p class="list-group-item-text">{{offer.photoPath}}</p>
-        <p class="list-group-item-text">{{offer.roomCapacity}}</p>
-        <p class="list-group-item-text">{{offer.price}}</p>
+<div *ngFor="let offer of offers; index as i">
+  <div class="col-lg-3" *ngIf='i%4==0'>
+    <div class="card center" (click)="goToDetails(offer)">
+      <img class="card-img-top image" src={{offer.photoPath}} alt="Card image cap">
+      <div class="card-body">
+        <h3 class="card-title">{{offer.hotelName}}</h3>
+        <p class="card-text">Location: {{offer.city}}, {{offer.country}}</p>
+        <p class="card-text">Room capacity: {{offer.roomCapacity}}</p>
+        <p class="card-text">Price: {{offer.price}}</p>
       </div>
-    </a>
+    </div>
+  </div>
+  <div class="col-lg-3" *ngIf='i%4==1'>
+    <div class="card center" (click)="goToDetails(offer)">
+      <img class="card-img-top image" src={{offer.photoPath}} alt="Card image cap">
+      <div class="card-body">
+        <h3 class="card-title">{{offer.hotelName}}</h3>
+        <p class="card-text">Location: {{offer.city}}, {{offer.country}}</p>
+        <p class="card-text">Room capacity: {{offer.roomCapacity}}</p>
+        <p class="card-text">Price: {{offer.price}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3" *ngIf='i%4==2'>
+    <div class="card center" (click)="goToDetails(offer)">
+      <img class="card-img-top image" src={{offer.photoPath}} alt="Card image cap">
+      <div class="card-body">
+        <h3 class="card-title">{{offer.hotelName}}</h3>
+        <p class="card-text">Location: {{offer.city}}, {{offer.country}}</p>
+        <p class="card-text">Room capacity: {{offer.roomCapacity}}</p>
+        <p class="card-text">Price: {{offer.price}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3" *ngIf='i%4==3'>
+    <div class="card center" (click)="goToDetails(offer)">
+      <img class="card-img-top image" src={{offer.photoPath}} alt="Card image cap">
+      <div class="card-body">
+        <h3 class="card-title">{{offer.hotelName}}</h3>
+        <p class="card-text">Location: {{offer.city}}, {{offer.country}}</p>
+        <p class="card-text">Room capacity: {{offer.roomCapacity}}</p>
+        <p class="card-text">Price: {{offer.price}}</p>
+      </div>
+    </div>
   </div>
 </div>

@@ -18,6 +18,7 @@ export class OfferService implements OnInit {
   private urlEditOffer = AuthService.BASIC_ADDRESS + "/edit";
   searched: Offer[];
   editedOffer: Offer;
+  detailedOffer: Offer;
 
   constructor(private http: HttpClient, private auth: AuthService) {
   }
