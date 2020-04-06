@@ -1,7 +1,7 @@
 <div *ngFor="let offer of offers; index as i">
-  <div class="col-lg-3" *ngIf='i%4==0'>
-    <div class="card center" (click)="goToDetails(offer)">
-      <img class="card-img-top image" src={{offer.photoPath}} alt="Card image cap">
+  <div *ngIf='i%4==0' class="col-lg-3">
+    <div (click)="goToDetails(offer)" class="card center">
+      <img alt="Card image cap" class="card-img-top image" src={{offer.photoPath}}>
       <div class="card-body">
         <h3 class="card-title">{{offer.hotelName}}</h3>
         <p class="card-text">Location: {{offer.city}}, {{offer.country}}</p>
@@ -10,9 +10,9 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-3" *ngIf='i%4==1'>
-    <div class="card center" (click)="goToDetails(offer)">
-      <img class="card-img-top image" src={{offer.photoPath}} alt="Card image cap">
+  <div *ngIf='i%4==1' class="col-lg-3">
+    <div (click)="goToDetails(offer)" class="card center">
+      <img alt="Card image cap" class="card-img-top image" src={{offer.photoPath}}>
       <div class="card-body">
         <h3 class="card-title">{{offer.hotelName}}</h3>
         <p class="card-text">Location: {{offer.city}}, {{offer.country}}</p>
@@ -21,9 +21,9 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-3" *ngIf='i%4==2'>
-    <div class="card center" (click)="goToDetails(offer)">
-      <img class="card-img-top image" src={{offer.photoPath}} alt="Card image cap">
+  <div *ngIf='i%4==2' class="col-lg-3">
+    <div (click)="goToDetails(offer)" class="card center">
+      <img alt="Card image cap" class="card-img-top image" src={{offer.photoPath}}>
       <div class="card-body">
         <h3 class="card-title">{{offer.hotelName}}</h3>
         <p class="card-text">Location: {{offer.city}}, {{offer.country}}</p>
@@ -32,9 +32,9 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-3" *ngIf='i%4==3'>
-    <div class="card center" (click)="goToDetails(offer)">
-      <img class="card-img-top image" src={{offer.photoPath}} alt="Card image cap">
+  <div *ngIf='i%4==3' class="col-lg-3">
+    <div (click)="goToDetails(offer)" class="card center">
+      <img alt="Card image cap" class="card-img-top image" src={{offer.photoPath}}>
       <div class="card-body">
         <h3 class="card-title">{{offer.hotelName}}</h3>
         <p class="card-text">Location: {{offer.city}}, {{offer.country}}</p>

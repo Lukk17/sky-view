@@ -19,7 +19,7 @@ export class OfferDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.offer = this.offerService.detailedOffer;
-    this.isOwner = this.offer.ownerEmail == this.auth.user.value.email;
+    this.isOwner = this.offer.ownerEmail == this.auth.loggedEmail.value;
     this.auth.loggedEmail.subscribe(email => {
       this.isOwner = this.offer.ownerEmail == email;
     });

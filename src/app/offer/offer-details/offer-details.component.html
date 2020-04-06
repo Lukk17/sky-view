@@ -1,4 +1,4 @@
-<img src={{offer.photoPath}} alt="Card image cap">
+<img alt="Card image cap" src={{offer.photoPath}}>
 
 <h3 class="card-title">{{offer.hotelName}}</h3>
 <p class="card-text">{{offer.description}}</p>
@@ -9,4 +9,4 @@
 <p class="card-text">Room capacity: {{offer.roomCapacity}}</p>
 <p class="card-text">Price: {{offer.price}}</p>
 
-<button class="btn btn-danger" (click)="deleteOffer(offer.id)" *ngIf="isOwner">Delete</button>
+<button (click)="deleteOffer(offer.id)" *ngIf="isOwner" class="btn btn-danger">Delete</button>

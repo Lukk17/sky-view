@@ -14,10 +14,12 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MyOffersComponent} from './offer/myOffers/myOffers.component';
 import {AddOfferComponent} from './offer/add-offer/add-offer.component';
-import { UserDetailsComponent } from './user/user-details/user-details.component';
-import { OfferSearchComponent } from './offer/offer-search/offer-search.component';
-import { EditOfferComponent } from './offer/edit-offer/edit-offer.component';
-import { OfferDetailsComponent } from './offer/offer-details/offer-details.component';
+import {UserDetailsComponent} from './user/user-details/user-details.component';
+import {OfferSearchComponent} from './offer/offer-search/offer-search.component';
+import {EditOfferComponent} from './offer/edit-offer/edit-offer.component';
+import {OfferDetailsComponent} from './offer/offer-details/offer-details.component';
+import {MessageComponent} from './message/message.component';
+import {NewMessageComponent} from './message/new-message/new-message.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { OfferDetailsComponent } from './offer/offer-details/offer-details.compo
     UserDetailsComponent,
     OfferSearchComponent,
     EditOfferComponent,
-    OfferDetailsComponent
+    OfferDetailsComponent,
+    MessageComponent,
+    NewMessageComponent
   ],
   imports: [
     BrowserModule,

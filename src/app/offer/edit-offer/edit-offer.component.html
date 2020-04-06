@@ -1,90 +1,90 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 col-md-5">
-      <div class="alert-danger" *ngIf="error">
+      <div *ngIf="error" class="alert-danger">
         <p>{{error}}</p>
       </div>
       <form #offerForm="ngForm" (ngSubmit)="onSubmit(offerForm)">
         <div class="form-group">
           <label for="hotelName">Hotel Name</label>
-          <input type="text"
-                 id="hotelName"
+          <input [(ngModel)]=offer.hotelName
                  class="form-control"
-                 ngModel
+                 id="hotelName"
                  name="hotelName"
-                 [(ngModel)] = offer.hotelName
+                 ngModel
                  required
+                 type="text"
           />
         </div>
         <div class="form-group">
           <label for="description">Description</label>
-          <input type="text"
-                 id="description"
+          <input [(ngModel)]=offer.description
                  class="form-control"
-                 ngModel
+                 id="description"
                  name="description"
-                 [(ngModel)] = offer.description
+                 ngModel
                  required
+                 type="text"
           />
         </div>
         <div class="form-group">
           <label for="city">City</label>
-          <input type="text"
-                 id="city"
+          <input [(ngModel)]=offer.city
                  class="form-control"
-                 ngModel
+                 id="city"
                  name="city"
-                 [(ngModel)] = offer.city
+                 ngModel
                  required
+                 type="text"
           />
         </div>
         <div class="form-group">
           <label for="country">Country</label>
-          <input type="text"
-                 id="country"
+          <input [(ngModel)]=offer.country
                  class="form-control"
-                 ngModel
+                 id="country"
                  name="country"
-                 [(ngModel)] = offer.country
+                 ngModel
                  required
+                 type="text"
           />
         </div>
         <div class="form-group">
           <label for="photoPath">Photo Link</label>
-          <input type="text"
-                 id="photoPath"
+          <input [(ngModel)]=offer.photoPath
                  class="form-control"
-                 ngModel
+                 id="photoPath"
                  name="photoPath"
-                 [(ngModel)] = offer.photoPath
+                 ngModel
                  required
+                 type="text"
           />
         </div>
         <div class="form-group">
           <label for="roomCapacity">Room capacity</label>
-          <input type="number"
-                 id="roomCapacity"
+          <input [(ngModel)]=offer.roomCapacity
                  class="form-control"
-                 ngModel
+                 id="roomCapacity"
                  name="roomCapacity"
-                 [(ngModel)] = offer.roomCapacity
+                 ngModel
                  required
+                 type="number"
           />
         </div>
         <div class="form-group">
           <label for="price">Price</label>
-          <input type="number"
-                 id="price"
+          <input [(ngModel)]=offer.price
                  class="form-control"
-                 ngModel
+                 id="price"
                  name="price"
-                 [(ngModel)] = offer.price
+                 ngModel
                  required
+                 type="number"
           />
         </div>
         <div>
-          <button class="btn btn-primary" type="submit"
-                  [disabled]="offerForm.invalid">Save Offer
+          <button [disabled]="offerForm.invalid" class="btn btn-primary"
+                  type="submit">Save Offer
           </button>
         </div>
       </form>

@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {AuthService} from "./auth.service";
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, tap} from "rxjs/operators";
 import {throwError} from "rxjs";
 
@@ -27,45 +27,10 @@ export class User {
 
 @Injectable({providedIn: 'root'})
 export class UserService {
-  private userListURL = AuthService.BASIC_ADDRESS + '/userList';
-  private userDetailsURL = AuthService.BASIC_ADDRESS + '/userDetails';
+  private userListURL = AuthService.BASIC_ADDRESS + '/user/userList';
+  private userDetailsURL = AuthService.BASIC_ADDRESS + '/user/userDetails';
 
   constructor(private http: HttpClient, private auth: AuthService) {
-  }
-
-  public getAllUsers() {
-
-    return this.http
-      .get<User[]>(this.userListURL,
-        {
-          headers: this.getAuthHeader()
-        })
-      .pipe(
-        catchError(UserService.handleError),
-        tap(UserService.handleResponse)
-      );
-  }
-
-  public getUserDetails() {
-
-    return this.http
-      .get<User>(this.userDetailsURL,
-        {
-          headers: this.getAuthHeader()
-        })
-      .pipe(
-        catchError(UserService.handleError),
-        tap(user => {
-          return user;
-        })
-      );
-
-  }
-
-  private getAuthHeader() {
-    const email = this.auth.user.value.email;
-    const password = this.auth.user.value.password;
-    return new HttpHeaders({Authorization: 'Basic ' + btoa(email + ":" + password)})
   }
 
   private static handleError(errorResp: HttpErrorResponse) {
@@ -78,6 +43,35 @@ export class UserService {
       users.push(respData[key])
     }
     return users;
+  }
+
+  public getAllUsers() {
+
+    return this.http
+      .get<User[]>(this.userListURL,
+        {
+          headers: this.auth.getAuthHeader()
+        })
+      .pipe(
+        catchError(UserService.handleError),
+        tap(UserService.handleResponse)
+      );
+  }
+
+  public getUserDetails() {
+
+    return this.http
+      .get<User>(this.userDetailsURL,
+        {
+          headers: this.auth.getAuthHeader()
+        })
+      .pipe(
+        catchError(UserService.handleError),
+        tap(user => {
+          return user;
+        })
+      );
+
   }
 
 }

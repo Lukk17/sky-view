@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {Offer, OfferService} from "../../services/offer.service";
-import {Route, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-edit-offer',
@@ -12,7 +12,8 @@ export class EditOfferComponent implements OnInit {
   error: string = null;
   offer: Offer;
 
-  constructor(private offerService: OfferService, private router: Router) { }
+  constructor(private offerService: OfferService, private router: Router) {
+  }
 
   ngOnInit(): void {
     // console.log(this.offer.hotelName)

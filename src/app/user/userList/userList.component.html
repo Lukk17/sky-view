@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <a class="list-group-item clearfix" *ngFor="let user of users">
+    <a *ngFor="let user of users" class="list-group-item clearfix">
       <div class="pull-left">
         <h4 class="list-group-item-heading"> {{user.email}}</h4>
         <p class="list-group-item-text">{{user.id}}</p>

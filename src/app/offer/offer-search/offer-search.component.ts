@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Offer, OfferService} from "../../services/offer.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-offer-search',
@@ -10,11 +11,15 @@ export class OfferSearchComponent implements OnInit {
 
   offers: Offer[]
 
-  constructor(private offerService: OfferService) {
+  constructor(private offerService: OfferService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.offers = this.offerService.searched;
   }
 
+  goToDetails(offer: Offer) {
+    this.offerService.detailedOffer = offer;
+    this.router.navigate(["/offerDetails"])
+  }
 }

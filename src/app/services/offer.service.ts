@@ -1,5 +1,5 @@
 import {Injectable, OnInit} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {catchError, tap} from "rxjs/operators";
 import {throwError} from "rxjs";
@@ -10,88 +10,19 @@ import {NgForm} from "@angular/forms";
 })
 export class OfferService implements OnInit {
 
-  urlAllOffers = AuthService.BASIC_ADDRESS + "/getAllOffers";
-  urlMyOffers = AuthService.BASIC_ADDRESS + "/getOwnedOffers";
-  urlAddOffer = AuthService.BASIC_ADDRESS + "/addOffer";
-  urlDeleteOffer = AuthService.BASIC_ADDRESS + "/deleteOffer";
-  urlSearchOffer = AuthService.BASIC_ADDRESS + "/search";
-  private urlEditOffer = AuthService.BASIC_ADDRESS + "/edit";
   searched: Offer[];
   editedOffer: Offer;
   detailedOffer: Offer;
+  private ALL_OFFERS_URL = AuthService.BASIC_ADDRESS + "/offer/getAll";
+  private MY_OFFERS_URL = AuthService.BASIC_ADDRESS + "/offer/getOwned";
+  private ADD_OFFER_URL = AuthService.BASIC_ADDRESS + "/offer/add";
+  private DELETE_OFFER_URL = AuthService.BASIC_ADDRESS + "/offer/delete";
+  private SEARCH_OFFER_URL = AuthService.BASIC_ADDRESS + "/offer/search";
+  private EDIT_OFFER_URL = AuthService.BASIC_ADDRESS + "/offer/edit";
+  private BOOK_OFFER_URL = AuthService.BASIC_ADDRESS + "/offer/book";
+  private BOOKED_OFFERS_URL = AuthService.BASIC_ADDRESS + "/offer/getBooked";
 
   constructor(private http: HttpClient, private auth: AuthService) {
-  }
-
-  ngOnInit(): void {
-  }
-
-  public getAllOffers() {
-    return this.http
-      .get(this.urlAllOffers)
-      .pipe(
-        catchError(OfferService.handleError),
-        tap(OfferService.handleResponse)
-      )
-  }
-
-  public getMyOffers() {
-    return this.http
-      .get(this.urlMyOffers,
-        {
-          headers: this.getAuthHeader()
-        })
-      .pipe(
-        catchError(OfferService.handleError),
-        tap(OfferService.handleResponse)
-      )
-  }
-
-  public searchOffer(searched: string) {
-    return this.http
-      .post(this.urlSearchOffer,
-        searched
-      )
-      .pipe(
-        catchError(OfferService.handleError),
-        tap(OfferService.handleResponse)
-      )
-  }
-
-  public addOffer(offerForm: NgForm) {
-    const offer = OfferService.buildOffer(offerForm);
-
-    return this.http.post(this.urlAddOffer,
-      offer,
-      {
-        headers: this.getAuthHeader()
-      });
-  }
-
-  editOffer(offerForm: NgForm) {
-    const offer = OfferService.buildOffer(offerForm);
-    offer.id = this.editedOffer.id;
-
-    return this.http.put(this.urlEditOffer,
-      offer,
-      {
-        headers: this.getAuthHeader()
-      });
-  }
-
-  public deleteOffer(id: number) {
-    return this.http.request('DELETE', this.urlDeleteOffer,
-      {
-        headers: this.getAuthHeader(),
-        body: id
-      });
-  }
-
-  private getAuthHeader() {
-    const email = this.auth.user.value.email;
-    const pass = this.auth.user.value.password;
-
-    return new HttpHeaders({Authorization: 'Basic ' + btoa(email + ":" + pass)})
   }
 
   private static buildOffer(offerForm: NgForm) {
@@ -115,22 +46,76 @@ export class OfferService implements OnInit {
     for (const key in respData) {
       offers.push(respData[key])
     }
-    console.log(offers)
+    console.log(offers);
     return offers;
+  }
+
+  ngOnInit(): void {
+  }
+
+  public getAllOffers() {
+    return this.http
+      .get(this.ALL_OFFERS_URL)
+      .pipe(
+        catchError(OfferService.handleError),
+        tap(OfferService.handleResponse)
+      )
+  }
+
+  public getMyOffers() {
+    return this.http
+      .get(this.MY_OFFERS_URL,
+        {
+          headers: this.auth.getAuthHeader()
+        })
+      .pipe(
+        catchError(OfferService.handleError),
+        tap(OfferService.handleResponse)
+      )
+  }
+
+  public searchOffer(searched: string) {
+    return this.http
+      .post(this.SEARCH_OFFER_URL,
+        searched
+      )
+      .pipe(
+        catchError(OfferService.handleError),
+        tap(OfferService.handleResponse)
+      )
+  }
+
+  public addOffer(offerForm: NgForm) {
+    const offer = OfferService.buildOffer(offerForm);
+
+    return this.http.post(this.ADD_OFFER_URL,
+      offer,
+      {
+        headers: this.auth.getAuthHeader()
+      });
+  }
+
+  editOffer(offerForm: NgForm) {
+    const offer = OfferService.buildOffer(offerForm);
+    offer.id = this.editedOffer.id;
+
+    return this.http.put(this.EDIT_OFFER_URL,
+      offer,
+      {
+        headers: this.auth.getAuthHeader()
+      });
+  }
+
+  public deleteOffer(id: number) {
+    return this.http.request('DELETE', this.DELETE_OFFER_URL,
+      {
+        headers: this.auth.getAuthHeader(),
+        body: id
+      });
   }
 }
 
 export class Offer {
-
-  constructor(hotelName: string, description: string, price: number, roomCapacity: number, city: string, country: string, photoPath: string) {
-    this.hotelName = hotelName;
-    this.description = description;
-    this.price = price;
-    this.roomCapacity = roomCapacity;
-    this.city = city;
-    this.country = country;
-    this.photoPath = photoPath;
-  }
 
   "id": number;
   "hotelName": string;
@@ -143,4 +128,14 @@ export class Offer {
   "country": string;
   "booked": string;
   "photoPath": string;
+
+  constructor(hotelName: string, description: string, price: number, roomCapacity: number, city: string, country: string, photoPath: string) {
+    this.hotelName = hotelName;
+    this.description = description;
+    this.price = price;
+    this.roomCapacity = roomCapacity;
+    this.city = city;
+    this.country = country;
+    this.photoPath = photoPath;
+  }
 }

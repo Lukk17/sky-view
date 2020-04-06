@@ -13,10 +13,10 @@ import {UserService} from "../services/user.service";
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   collapsed = true;
-  private userSub: Subscription;
   isAuth = false;
   userEmail: string;
   isAdmin = false;
+  private userSub: Subscription;
 
   constructor(
     private router: Router,
@@ -28,9 +28,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.userSub = this.auth.user.subscribe(user => {
+    this.userSub = this.auth.userToken.subscribe(userToken => {
       // true if there is user, false if there is not
-      this.isAuth = !!user
+      this.isAuth = !!userToken
     });
     // without subscribing after logout and login header mail wasn't update and show previous logged user's email
     this.auth.loggedEmail.subscribe(email => {
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.checkIfAdmin();
     });
     if (this.isAuth) {
-      this.userEmail = this.auth.user.value.email;
+      this.userEmail = this.auth.loggedEmail.value;
       this.checkIfAdmin();
       console.log(this.isAdmin)
     }
@@ -67,6 +67,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
     this.isAdmin = false;
+    this.isAuth = false;
     this.auth.logout();
   }
 

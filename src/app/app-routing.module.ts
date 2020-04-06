@@ -10,6 +10,8 @@ import {UserDetailsComponent} from "./user/user-details/user-details.component";
 import {OfferSearchComponent} from "./offer/offer-search/offer-search.component";
 import {EditOfferComponent} from "./offer/edit-offer/edit-offer.component";
 import {OfferDetailsComponent} from "./offer/offer-details/offer-details.component";
+import {MessageComponent} from "./message/message.component";
+import {NewMessageComponent} from "./message/new-message/new-message.component";
 
 const routes: Routes = [
   {path: '', redirectTo: "/home", pathMatch: "full"},
@@ -21,6 +23,8 @@ const routes: Routes = [
   {path: 'offerSearch', component: OfferSearchComponent},
   {path: 'editOffer', component: EditOfferComponent},
   {path: 'offerDetails', component: OfferDetailsComponent},
+  {path: 'messages', component: MessageComponent},
+  {path: 'newMessage', component: NewMessageComponent},
   {
     path: 'userList',
     component: UserListComponent,

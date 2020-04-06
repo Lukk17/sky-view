@@ -23,8 +23,6 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(authForm: NgForm) {
-    console.log(authForm.value);
-
     if (authForm.invalid) {
       return;
     }
@@ -43,13 +41,8 @@ export class AuthComponent implements OnInit {
     let authObs = this.authService.login(email, password);
 
     authObs.subscribe(response => {
-        console.log(response);
-        this.authService.loggedEmail.next(this.authService.user.value.email);
+        this.authService.loggedEmail.next(email);
         this.router.navigate(['/']);
-      },
-      errorMessage => {
-        console.error(errorMessage);
-        this.error = errorMessage;
       }
     );
   }
@@ -58,7 +51,6 @@ export class AuthComponent implements OnInit {
     let authObs = this.authService.signUp(email, password);
 
     authObs.subscribe(response => {
-        console.log(response);
         this.login(email, password);
       },
       errorMessage => {

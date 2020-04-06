@@ -1,0 +1,42 @@
+<div class="toggleStyle">
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label (click)="goToReceived()" class="btn btn-success active">
+      <input autocomplete="off" checked id="option1" name="options" type="radio"> Received
+    </label>
+    <label (click)="goToSent()" class="btn btn-success">
+      <input autocomplete="off" id="option2" name="options" type="radio"> Sent
+    </label>
+  </div>
+</div>
+<div class="writeNew">
+  <a routerLink="/newMessage">
+    <span class="glyphicon glyphicon-pencil iconSize"></span>
+    <p>Write new message !</p>
+  </a>
+</div>
+<div class="centerIt">
+  <div *ngIf="currentPage==RECEIVED_PAGE">
+    <div *ngFor="let message of received">
+      <div class="card center"> {{message.senderEmail}}
+        <div class="card-body">
+          <h3 class="card-title">{{message.text}}</h3>
+          <p class="card-text">Location: {{message.createdTime.replace("T", " ")}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="centerIt">
+  <div *ngIf="currentPage==SENT_PAGE">
+    <div *ngFor="let message of sent">
+      <div class="card center"> {{message.receiverEmail}}
+        <div class="card-body">
+          <h3 class="card-title">{{message.text}}</h3>
+          <p class="card-text">Created: {{message.createdTime.replace("T", " ")}}</p>
+          <p class="card-text">Read: {{message.read}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
