@@ -46,7 +46,6 @@ export class OfferService implements OnInit {
     for (const key in respData) {
       offers.push(respData[key])
     }
-    console.log(offers);
     return offers;
   }
 
@@ -65,6 +64,18 @@ export class OfferService implements OnInit {
   public getMyOffers() {
     return this.http
       .get(this.MY_OFFERS_URL,
+        {
+          headers: this.auth.getAuthHeader()
+        })
+      .pipe(
+        catchError(OfferService.handleError),
+        tap(OfferService.handleResponse)
+      )
+  }
+
+  public getBookedOffers() {
+    return this.http
+      .get<Offer[]>(this.BOOKED_OFFERS_URL,
         {
           headers: this.auth.getAuthHeader()
         })
@@ -93,6 +104,17 @@ export class OfferService implements OnInit {
       {
         headers: this.auth.getAuthHeader()
       });
+  }
+
+  public bookOffer(offerID: number, dateToBook: string) {
+    this.http.post(this.BOOK_OFFER_URL,
+      {
+        "offerID": offerID,
+        "dateToBook": dateToBook
+      },
+      {
+        headers: this.auth.getAuthHeader()
+      }).subscribe();
   }
 
   editOffer(offerForm: NgForm) {
@@ -144,4 +166,16 @@ export class Booked {
   "id": number;
   "bookedDate": string;
   "userEmail": string;
+}
+
+export class PersonalBooked {
+  "hotelName": string;
+  "id": string;
+  "date": string;
+
+  constructor(hotelName: string, id: string, date: string) {
+    this.hotelName = hotelName;
+    this.id = id;
+    this.date = date;
+  }
 }

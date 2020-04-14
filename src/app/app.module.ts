@@ -20,6 +20,8 @@ import {EditOfferComponent} from './offer/edit-offer/edit-offer.component';
 import {OfferDetailsComponent} from './offer/offer-details/offer-details.component';
 import {MessageComponent} from './message/message.component';
 import {NewMessageComponent} from './message/new-message/new-message.component';
+import {CalendarModule, DateAdapter} from 'angular-calendar';
+import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import {NewMessageComponent} from './message/new-message/new-message.component';
     EditOfferComponent,
     OfferDetailsComponent,
     MessageComponent,
-    NewMessageComponent
+    NewMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import {NewMessageComponent} from './message/new-message/new-message.component';
     FormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory}),
   ],
   providers: [
     AuthGuard

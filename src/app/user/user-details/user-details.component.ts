@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User, UserService} from "../../services/user.service";
+import {OfferService, PersonalBooked} from "../../services/offer.service";
 
 @Component({
   selector: 'app-user-details',
@@ -9,13 +10,16 @@ import {User, UserService} from "../../services/user.service";
 export class UserDetailsComponent implements OnInit {
   user: User;
   error = null;
+  bookedOffers: PersonalBooked[] = [];
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private offerService: OfferService) {
   }
 
   ngOnInit() {
     this.user = new User();
-    this.getUserDetails()
+    this.getUserDetails();
+    this.getUserBooked();
+    console.log("ON INIT")
   }
 
   private getUserDetails() {
@@ -26,6 +30,25 @@ export class UserDetailsComponent implements OnInit {
       },
       this.handleError
     )
+  }
+
+  private getUserBooked() {
+
+    this.offerService.getBookedOffers().subscribe(offers => {
+        offers.forEach(offer => {
+          offer.booked.forEach(booked => {
+            if (booked.userEmail == this.user.email) {
+              this.bookedOffers[this.bookedOffers.length] = new PersonalBooked(
+                offer.hotelName,
+                offer.id.toString(),
+                booked.bookedDate
+              )
+            }
+          })
+        })
+      },
+      this.handleError);
+    console.log(this.bookedOffers)
   }
 
   private handleError(error) {

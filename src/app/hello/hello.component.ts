@@ -4,32 +4,32 @@ import {Router} from "@angular/router";
 
 
 @Component({
-  selector: 'app-hello',
-  templateUrl: './hello.component.html',
-  styleUrls: ['./hello.component.css']
+    selector: 'app-hello',
+    templateUrl: './hello.component.html',
+    styleUrls: ['./hello.component.css']
 })
 export class HelloComponent implements OnInit {
 
-  offers: Offer[];
-  error = null;
+    offers: Offer[];
+    error = null;
 
-  constructor(private offerService: OfferService, private router: Router) {
-  }
+    constructor(private offerService: OfferService, private router: Router) {
+    }
 
-  ngOnInit() {
-    this.getAllOffers();
-  }
+    ngOnInit() {
+        this.getAllOffers();
+    }
 
-  getAllOffers() {
-    this.offerService.getAllOffers().subscribe(offers => {
-      this.offers = offers;
-    }, error => {
-      this.error = error.message;
-    });
-  }
+    getAllOffers() {
+        this.offerService.getAllOffers().subscribe(offers => {
+            this.offers = offers;
+        }, error => {
+            this.error = error.message;
+        });
+    }
 
-  goToDetails(offer: Offer) {
-    this.offerService.detailedOffer = offer;
-    this.router.navigate(["/offerDetails"])
-  }
+    goToDetails(offer: Offer) {
+        this.offerService.detailedOffer = offer;
+        this.router.navigate(["/offerDetails"])
+    }
 }
