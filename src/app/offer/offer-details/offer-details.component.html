@@ -1,12 +1,25 @@
-<img alt="Card image cap" src={{offer.photoPath}}>
+<div class="container-fluid details">
+  <div class="block-details">
+    <img alt="Card image cap" src={{offer.photoPath}}>
 
-<h3 class="card-title">{{offer.hotelName}}</h3>
-<p class="card-text">{{offer.description}}</p>
-<p class="card-text">City: {{offer.city}}</p>
-<p class="card-text">Country: {{offer.country}}</p>
-<p class="card-text">Owner: {{offer.ownerEmail}}</p>
-<p class="card-text">Comment: {{offer.comment}}</p>
-<p class="card-text">Room capacity: {{offer.roomCapacity}}</p>
-<p class="card-text">Price: {{offer.price}}</p>
+    <h3 class="card-title">{{offer.hotelName}}</h3>
+    <p class="card-text">{{offer.description}}</p>
+    <p class="card-text">City: {{offer.city}}</p>
+    <p class="card-text">Country: {{offer.country}}</p>
+    <p class="card-text">Owner: {{offer.ownerEmail}}</p>
+    <p class="card-text">Comment: {{offer.comment}}</p>
+    <p class="card-text">Room capacity: {{offer.roomCapacity}}</p>
+    <p class="card-text">Price: {{offer.price}}</p>
+    <p>Booked:</p>
+    <div  *ngFor="let booked of offer.booked">
+      <p class="card-text">{{booked.bookedDate}} by {{booked.userEmail}}</p>
+    </div>
+    <div>
+      <button (click)="deleteOffer(offer.id)" *ngIf="isOwner" class="btn btn-danger">Delete</button>
+      <span *ngIf="isOwner"> | </span>
+      <button (click)="bookOffer(offer.id)" class="btn btn-success">Book</button>
 
-<button (click)="deleteOffer(offer.id)" *ngIf="isOwner" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+</div>
+

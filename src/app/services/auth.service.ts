@@ -27,8 +27,8 @@ export class AuthService {
   private LOCAL_STORAGE_TOKEN = 'token';
   private LOCAL_STORAGE_USER_EMAIL = 'userEmail';
   private LOCAL_STORAGE_AUTH_TYPE = 'tokenType';
-  private signUpURL = AuthService.BASIC_ADDRESS + '/user/register';
-  private logInURL = AuthService.BASIC_ADDRESS + '/auth/login';
+  private signUpURL = AuthService.BASIC_ADDRESS + '/register';
+  private logInURL = AuthService.BASIC_ADDRESS + '/login';
 
   constructor(
     private http: HttpClient,

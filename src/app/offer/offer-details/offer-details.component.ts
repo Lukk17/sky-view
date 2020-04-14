@@ -37,4 +37,8 @@ export class OfferDetailsComponent implements OnInit {
     this.error = error.message;
   }
 
+  bookOffer(id: number) {
+
+
+  }
 }

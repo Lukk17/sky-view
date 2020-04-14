@@ -1,0 +1,12 @@
+.details {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.block-details {
+  margin: auto;
+  display: inline-block;
+  text-align: center;
+}

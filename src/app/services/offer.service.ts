@@ -126,7 +126,7 @@ export class Offer {
   "roomCapacity": number;
   "city": string;
   "country": string;
-  "booked": string;
+  "booked": Booked[];
   "photoPath": string;
 
   constructor(hotelName: string, description: string, price: number, roomCapacity: number, city: string, country: string, photoPath: string) {
@@ -138,4 +138,10 @@ export class Offer {
     this.country = country;
     this.photoPath = photoPath;
   }
+}
+
+export class Booked {
+  "id": number;
+  "bookedDate": string;
+  "userEmail": string;
 }

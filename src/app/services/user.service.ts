@@ -27,8 +27,8 @@ export class User {
 
 @Injectable({providedIn: 'root'})
 export class UserService {
-  private userListURL = AuthService.BASIC_ADDRESS + '/user/userList';
-  private userDetailsURL = AuthService.BASIC_ADDRESS + '/user/userDetails';
+  private userListURL = AuthService.BASIC_ADDRESS + '/auth/userList';
+  private userDetailsURL = AuthService.BASIC_ADDRESS + '/auth/userDetails';
 
   constructor(private http: HttpClient, private auth: AuthService) {
   }
