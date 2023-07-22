@@ -10,10 +10,15 @@ export const environment = {
   searchOfferPath: '/offer/api/search',
 
   messageBaseAddress: 'http://localhost:5553',
-  receivedMessages: '/received',
-  sentMessages: '/sent',
-  sendMessage: '/send',
-  deleteMessage: '/delete'
+  receivedMessages: '/api/received',
+  sentMessages: '/api/sent',
+  sendMessage: '/api/send',
+  deleteMessage: '/api/delete/',
+
+  bookingBaseAddress: 'http://localhost:5555',
+  bookings: '/api/user/bookings',
+  addBooking: '/api/bookings',
+  deleteBooking: '/api/bookings/'
 };
 
 import 'zone.js/dist/zone-error';  // Included with Angular CLI.

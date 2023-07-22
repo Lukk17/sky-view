@@ -20,8 +20,9 @@
       <div class="card center"> {{message.senderEmail}}
         <div class="card-body">
           <h3 class="card-title">{{message.text}}</h3>
-          <p class="card-text">Location: {{message.createdTime.replace("T", " ")}}</p>
+          <p class="card-text">Created: {{message.createdTime.replace("T", " ")}}</p>
         </div>
+        <button (click)="deleteMessage(message.id)" class="btn btn-danger">Delete message</button>
       </div>
     </div>
   </div>
@@ -34,7 +35,6 @@
         <div class="card-body">
           <h3 class="card-title">{{message.text}}</h3>
           <p class="card-text">Created: {{message.createdTime.replace("T", " ")}}</p>
-          <p class="card-text">Read: {{message.read}}</p>
         </div>
       </div>
     </div>

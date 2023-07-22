@@ -59,7 +59,7 @@ export class MessageService {
   }
 
   deleteMessage(id: number) {
-    return this.http.delete(this.SEND_MESSAGE_URL,
+    return this.http.delete(this.DELETE_MESSAGE_URL + id,
       {
         headers: this.auth.getAuthHeader()
       }).pipe(

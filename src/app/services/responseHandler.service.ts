@@ -3,6 +3,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {EMPTY} from 'rxjs';
 import {Offer} from './offer.service';
 import {Message} from './message.service';
+import {Booking} from './booking.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,18 @@ export class ResponseHandlerService implements OnInit {
       }
     }
     return offers;
+  }
+
+  public static handleGetBookingsResponse(respData: Booking[]) {
+    const bookings: Booking[] = [];
+    console.log(bookings.toString());
+
+    for (const key in respData) {
+      if (respData.hasOwnProperty(key)) {
+        bookings.push(respData[key]);
+      }
+    }
+    return bookings;
   }
 
   public static handleMessageResponse(respData: Message[]) {

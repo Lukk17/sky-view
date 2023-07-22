@@ -21,8 +21,6 @@ export class User {
     id: number;
     name: string;
   };
-  receivedMessage: object;
-  sentMessage: object;
 }
 
 @Injectable({providedIn: 'root'})
@@ -34,16 +32,6 @@ export class UserService {
 
   private static handleError(errorResp: HttpErrorResponse) {
     return throwError(errorResp.error.error.message);
-  }
-
-  private static handleResponse(respData: User[]) {
-    const users: User[] = [];
-    for (const key in respData) {
-      if (respData.hasOwnProperty(key)) {
-        users.push(respData[key]);
-      }
-    }
-    return users;
   }
 
   public getUserDetails() {

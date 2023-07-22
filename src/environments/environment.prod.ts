@@ -10,8 +10,13 @@ export const environment = {
   searchOfferPath: '/offer/offer/api/search',
 
   messageBaseAddress: 'skycloud.luksarna.com',
-  receivedMessages: 'msg/received',
-  sentMessages: 'msg/sent',
-  sendMessage: 'msg/send',
-  deleteMessage: 'msg/delete'
+  receivedMessages: '/msg/api/received',
+  sentMessages: '/msg/api/sent',
+  sendMessage: '/msg/api/send',
+  deleteMessage: '/msg/api/delete/',
+
+  bookingBaseAddress: 'skycloud.luksarna.com',
+  bookings: '/booking/api/user/bookings',
+  addBooking: '/booking/api/bookings',
+  deleteBooking: '/booking/api/bookings/'
 };

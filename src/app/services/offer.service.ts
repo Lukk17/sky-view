@@ -105,10 +105,6 @@ export class OfferService implements OnInit {
         headers: this.auth.getAuthHeader()
       });
   }
-
-  public getBookedOffers() {
-
-  }
 }
 
 export class Offer {
@@ -122,7 +118,6 @@ export class Offer {
   'roomCapacity': number;
   'city': string;
   'country': string;
-  'booked': Booked[];
   'photoPath': string;
 
   constructor(hotelName: string, description: string, price: number, roomCapacity: number, city: string,
@@ -134,23 +129,5 @@ export class Offer {
     this.city = city;
     this.country = country;
     this.photoPath = photoPath;
-  }
-}
-
-export class Booked {
-  'id': number;
-  'bookedDate': string;
-  'userEmail': string;
-}
-
-export class PersonalBooked {
-  'hotelName': string;
-  'id': string;
-  'date': string;
-
-  constructor(hotelName: string, id: string, date: string) {
-    this.hotelName = hotelName;
-    this.id = id;
-    this.date = date;
   }
 }

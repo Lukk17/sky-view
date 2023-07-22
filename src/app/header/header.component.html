@@ -9,7 +9,7 @@
               <input class="form-control" name="search" ngModel placeholder="Search" type="text">
             </div>
             <button class="btn btn-default" type="submit">
-              <span class="glyphicon glyphicon-search"></span>
+              <span class="glyphicon glyphicon-search">Search</span>
             </button>
           </form>
         </li>
@@ -19,23 +19,23 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-<!--        <li *ngIf="isAuth" routerLinkActive="activeMy">-->
-        <li routerLinkActive="activeMy">
+        <li *ngIf="isAuth" routerLinkActive="activeMy">
+<!--        <li routerLinkActive="activeMy">-->
           <a routerLink="/userDetails">{{userEmail}}</a>
         </li>
-<!--        <li *ngIf="isAuth" routerLinkActive="activeMy">-->
-        <li routerLinkActive="activeMy">
+        <li *ngIf="isAuth" routerLinkActive="activeMy">
+<!--        <li routerLinkActive="activeMy">-->
           <a routerLink="/messages">
-            <span class="glyphicon glyphicon-envelope"></span>
+            <span class="glyphicon glyphicon-envelope">messages</span>
           </a>
         </li>
         <li routerLinkActive="activeMy">
           <a routerLink="/home">Home</a>
         </li>
-<!--        <li *ngIf="isAuth" routerLinkActive="activeMy">-->
-        <li routerLinkActive="activeMy">
+        <li *ngIf="isAuth" routerLinkActive="activeMy">
           <a routerLink="/myOffers">My Offers</a>
         </li>
+
         <li *ngIf="!isAuth" routerLinkActive="activeMy">
           <a routerLink="/auth">Login</a>
         </li>

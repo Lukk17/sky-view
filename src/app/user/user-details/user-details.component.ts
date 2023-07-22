@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User, UserService} from '../../services/user.service';
-import {OfferService, PersonalBooked} from '../../services/offer.service';
+import {PersonalBooking} from '../../services/booking.service';
 
 @Component({
   selector: 'app-user-details',
@@ -10,9 +10,9 @@ import {OfferService, PersonalBooked} from '../../services/offer.service';
 export class UserDetailsComponent implements OnInit {
   user: User;
   error = null;
-  bookedOffers: PersonalBooked[] = [];
+  bookedOffers: PersonalBooking[] = [];
 
-  constructor(private userService: UserService, private offerService: OfferService) {
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {

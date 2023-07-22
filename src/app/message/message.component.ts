@@ -34,12 +34,25 @@ export class MessageComponent implements OnInit {
 
   goToSent() {
     this.currentPage = this.SENT_PAGE;
+    this.messageService.getSent().subscribe(messages => {
+      this.sent = messages;
+    });
     console.log(this.currentPage);
   }
 
   goToReceived() {
     this.currentPage = this.RECEIVED_PAGE;
+    this.messageService.getReceived().subscribe(messages => {
+      this.received = messages;
+    });
     console.log(this.currentPage);
+  }
+
+  deleteMessage(id: number) {
+    this.messageService.deleteMessage(id).subscribe(value => {
+      console.log(value);
+      return value;
+    });
   }
 }
 
