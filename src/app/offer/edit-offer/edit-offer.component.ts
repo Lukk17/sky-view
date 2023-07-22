@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {Offer, OfferService} from "../../services/offer.service";
-import {Router} from "@angular/router";
+import {NgForm} from '@angular/forms';
+import {Offer, OfferService} from '../../services/offer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-offer',
@@ -21,8 +21,8 @@ export class EditOfferComponent implements OnInit {
   }
 
   onSubmit(offerForm: NgForm) {
-    this.offerService.editOffer(offerForm).subscribe(offer => {
-      this.router.navigate(['/myOffers']);
-    })
+    this.offerService.editOffer(offerForm).subscribe(offer =>
+      this.router.navigate(['/myOffers']).then()
+    );
   }
 }

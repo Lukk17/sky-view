@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Message, MessageService} from "../services/message.service";
+import {Message, MessageService} from '../services/message.service';
 
 @Component({
   selector: 'app-message',
@@ -7,8 +7,8 @@ import {Message, MessageService} from "../services/message.service";
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
-  RECEIVED_PAGE = "received";
-  SENT_PAGE = "sent";
+  RECEIVED_PAGE = 'received';
+  SENT_PAGE = 'sent';
 
   sent: Message[];
   received: Message[];
@@ -34,13 +34,12 @@ export class MessageComponent implements OnInit {
 
   goToSent() {
     this.currentPage = this.SENT_PAGE;
-    console.log(this.currentPage)
+    console.log(this.currentPage);
   }
 
   goToReceived() {
     this.currentPage = this.RECEIVED_PAGE;
-    console.log(this.currentPage)
-
+    console.log(this.currentPage);
   }
 }
 

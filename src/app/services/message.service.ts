@@ -1,40 +1,30 @@
 import {Injectable} from '@angular/core';
-import {AuthService} from "./auth.service";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError, tap} from "rxjs/operators";
-import {throwError} from "rxjs";
-import {NgForm} from "@angular/forms";
+import {AuthService} from './auth.service';
+import {HttpClient} from '@angular/common/http';
+import {catchError, tap} from 'rxjs/operators';
+import {NgForm} from '@angular/forms';
+import {ResponseHandlerService} from './responseHandler.service';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
-  private RECEIVED_MESSAGES_URL = AuthService.BASIC_ADDRESS + "/message/received";
-  private SENT_MESSAGES_URL = AuthService.BASIC_ADDRESS + "/message/sent";
-  private SEND_MESSAGE_URL = AuthService.BASIC_ADDRESS + "/message/send";
+  private BASE_ADDRESS = `${environment.messageBaseAddress}`;
+
+  private RECEIVED_MESSAGES_URL = this.BASE_ADDRESS + `${environment.receivedMessages}`;
+  private SENT_MESSAGES_URL = this.BASE_ADDRESS + `${environment.sentMessages}`;
+  private SEND_MESSAGE_URL = this.BASE_ADDRESS + `${environment.sendMessage}`;
+  private DELETE_MESSAGE_URL = this.BASE_ADDRESS + `${environment.deleteMessage}`;
 
   constructor(private auth: AuthService, private http: HttpClient) {
   }
 
-  private static handleError(errorResp: HttpErrorResponse) {
-    return throwError(errorResp.error.error.message);
-  }
-
-  private static handleResponse(respData: Message[]) {
-    const messages: Message[] = [];
-    for (const key in respData) {
-      messages.push(respData[key])
-    }
-    console.log(messages);
-    return messages;
-  }
-
-  private static buildOffer(messageForm: NgForm) {
+  private static buildMessage(messageForm: NgForm) {
     return new Message(
       messageForm.value.text,
       messageForm.value.receiver,
     );
-
   }
 
   getReceived() {
@@ -42,8 +32,8 @@ export class MessageService {
       {
         headers: this.auth.getAuthHeader()
       }).pipe(
-      catchError(MessageService.handleError),
-      tap(MessageService.handleResponse)
+      catchError((err) => ResponseHandlerService.handleError(err, 'getReceived()')),
+      tap(ResponseHandlerService.handleMessageResponse)
     );
   }
 
@@ -52,29 +42,40 @@ export class MessageService {
       {
         headers: this.auth.getAuthHeader()
       }).pipe(
-      catchError(MessageService.handleError),
-      tap(MessageService.handleResponse)
+      catchError((err) => ResponseHandlerService.handleError(err, 'getSent()')),
+      tap(ResponseHandlerService.handleMessageResponse)
     );
   }
 
-  sentMessage(messageForm: NgForm) {
-    const message = MessageService.buildOffer(messageForm);
+  sendMessage(messageForm: NgForm) {
+    const message = MessageService.buildMessage(messageForm);
     return this.http.post(this.SEND_MESSAGE_URL,
       message,
       {
         headers: this.auth.getAuthHeader()
-      })
+      }).pipe(
+      catchError((err) => ResponseHandlerService.handleError(err, 'sendMessage()'))
+    );
+  }
+
+  deleteMessage(id: number) {
+    return this.http.delete(this.SEND_MESSAGE_URL,
+      {
+        headers: this.auth.getAuthHeader()
+      }).pipe(
+      catchError((err) => ResponseHandlerService.handleError(err, 'deleteMessage()'))
+    );
   }
 }
 
 export class Message {
 
-  "id": number;
-  "text": string;
-  "receiverEmail": string;
-  "senderEmail": string;
-  "createdTime": string;
-  "read": boolean;
+  'id': number;
+  'text': string;
+  'receiverEmail': string;
+  'senderEmail': string;
+  'createdTime': string;
+  'read': boolean;
 
   constructor(text: string, receiverEmail: string) {
     this.text = text;

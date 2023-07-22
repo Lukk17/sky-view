@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {MessageService} from "../../services/message.service";
-import {Router} from "@angular/router";
+import {NgForm} from '@angular/forms';
+import {MessageService} from '../../services/message.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-new-message',
@@ -19,10 +19,10 @@ export class NewMessageComponent implements OnInit {
 
   onSubmit(message: NgForm) {
 
-    this.messageService.sentMessage(message).subscribe(message => {
-      this.router.navigate(['/messages']);
-    })
-
+    this.messageService.sendMessage(message).subscribe(sentMessage => {
+      console.log(sentMessage);
+      this.router.navigate(['/messages']).then();
+      return sentMessage;
+    });
   }
-
 }

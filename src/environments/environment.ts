@@ -3,7 +3,21 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  localDev: false,
+  offerBaseAddress: 'skycloud.luksarna.com',
+  allOfferPath: '/offer/api/offers',
+  ownedOffersPath: '/offer/api/owner/offers',
+  addOfferPath: '/offer/api/owner/offers',
+  editOfferPath: '/offer/api/owner/offers',
+  deleteOfferPath: '/offer/api/owner/offers/',
+  searchOfferPath: '/offer/offer/api/search',
+
+  messageBaseAddress: 'skycloud.luksarna.com',
+  receivedMessages: 'msg/received',
+  sentMessages: 'msg/sent',
+  sendMessage: 'msg/send',
+  deleteMessage: 'msg/delete'
 };
 
 /*
@@ -13,4 +27,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+import 'zone.js/dist/zone-error'; // Included with Angular CLI.

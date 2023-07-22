@@ -1,7 +1,7 @@
 <nav class="navbar-default">
   <div class="container-fluid ">
     <a (click)="routeToHome()" class="navbar-brand">Sky</a>
-    <div (window:resize)="collapsed = true" [class.collapse]="collapsed" class="collapse navbar-collapse">
+<!--    <div (window:resize)="collapsed = true" [class.collapse]="collapsed" class="collapse navbar-collapse">-->
       <ul class="nav navbar-nav">
         <li>
           <form #searchForm="ngForm" (ngSubmit)="search(searchForm)" class="navbar-form navbar-left">
@@ -13,15 +13,18 @@
             </button>
           </form>
         </li>
-        <li *ngIf="isAuth" routerLinkActive="activeMy">
+<!--        <li *ngIf="isAuth" routerLinkActive="activeMy">-->
+        <li routerLinkActive="activeMy">
           <a routerLink="/addOffer">Add Offer</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="isAuth" routerLinkActive="activeMy">
+<!--        <li *ngIf="isAuth" routerLinkActive="activeMy">-->
+        <li routerLinkActive="activeMy">
           <a routerLink="/userDetails">{{userEmail}}</a>
         </li>
-        <li *ngIf="isAuth" routerLinkActive="activeMy">
+<!--        <li *ngIf="isAuth" routerLinkActive="activeMy">-->
+        <li routerLinkActive="activeMy">
           <a routerLink="/messages">
             <span class="glyphicon glyphicon-envelope"></span>
           </a>
@@ -29,11 +32,9 @@
         <li routerLinkActive="activeMy">
           <a routerLink="/home">Home</a>
         </li>
-        <li *ngIf="isAuth" routerLinkActive="activeMy">
+<!--        <li *ngIf="isAuth" routerLinkActive="activeMy">-->
+        <li routerLinkActive="activeMy">
           <a routerLink="/myOffers">My Offers</a>
-        </li>
-        <li *ngIf="isAdmin" routerLinkActive="activeMy">
-          <a routerLink="/userList">userList</a>
         </li>
         <li *ngIf="!isAuth" routerLinkActive="activeMy">
           <a routerLink="/auth">Login</a>
@@ -43,5 +44,5 @@
         </li>
       </ul>
     </div>
-  </div>
+<!--  </div>-->
 </nav>

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
-import {Router} from "@angular/router";
+import {NgForm} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -38,25 +38,10 @@ export class AuthComponent implements OnInit {
   }
 
   private login(email: string, password: string) {
-    let authObs = this.authService.login(email, password);
 
-    authObs.subscribe(response => {
-        this.authService.loggedEmail.next(email);
-        this.router.navigate(['/']);
-      }
-    );
   }
 
   private signUp(email: string, password: string) {
-    let authObs = this.authService.signUp(email, password);
 
-    authObs.subscribe(response => {
-        this.login(email, password);
-      },
-      errorMessage => {
-        console.error(errorMessage);
-        this.error = errorMessage;
-      }
-    );
   }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {OfferService} from "../../services/offer.service";
-import {Router} from "@angular/router";
+import {NgForm} from '@angular/forms';
+import {OfferService} from '../../services/offer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-offer',
@@ -20,8 +20,7 @@ export class AddOfferComponent implements OnInit {
   onSubmit(offerForm: NgForm) {
 
     this.offerService.addOffer(offerForm).subscribe(offer => {
-      this.router.navigate(['/myOffers']);
-    })
-
+      this.router.navigate(['/offers']).then();
+    });
   }
 }

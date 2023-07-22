@@ -1,6 +1,6 @@
 <div class="container-fluid details">
   <div class="block-details">
-    <img alt="Card image cap" src={{offer.photoPath}}>
+    <img alt="Offer photo" src="{{offer.photoPath}}">
 
     <h3 class="card-title">{{offer.hotelName}}</h3>
     <p class="card-text">{{offer.description}}</p>
@@ -10,45 +10,48 @@
     <p class="card-text">Comment: {{offer.comment}}</p>
     <p class="card-text">Room capacity: {{offer.roomCapacity}}</p>
     <p class="card-text">Price: {{offer.price}}</p>
-    <p>Booked:</p>
-    <div *ngFor="let booked of offer.booked">
-      <p class="card-text">{{booked.bookedDate}} by {{booked.userEmail}}</p>
-    </div>
+<!--    <p>Booked:</p>-->
+<!--    <div *ngFor="let booked of offer.booked">-->
+<!--      <p class="card-text">{{booked.bookedDate}} by {{booked.userEmail}}</p>-->
+<!--    </div>-->
     <div>
       <button (click)="deleteOffer(offer.id)" *ngIf="isOwner" class="btn btn-danger">Delete</button>
+      <span *ngIf="isOwner"> | </span>
+    </div>
+    <div>
+      <button (click)="editOffer(offer)" *ngIf="isOwner" class="btn btn-warning">Edit</button>
       <span *ngIf="isOwner"> | </span>
     </div>
   </div>
 </div>
 
 
-<form #book="ngForm" (ngSubmit)="onSubmit(book.value)">
-  <div>
-    <button class="btn btn-primary"
-            type="submit">Book dates
-    </button>
-  </div>
-  <div *ngFor="let s of available; index as i" class="form-group">
-    <div *ngIf='i%5==0' class="col-lg-2">
-      <input id="{{s}}" name="{{s}}" ngModel type="checkbox" value="{{s}}">
-      <label for="{{s}}"> {{s}}</label>
-    </div>
-    <div *ngIf='i%5==1' class="col-lg-2">
-      <input id="{{s}}1" name="{{s}}" ngModel type="checkbox" value="{{s}}">
-      <label for="{{s}}1"> {{s}}</label>
-    </div>
-    <div *ngIf='i%5==2' class="col-lg-2">
-      <input id="{{s}}2" name="{{s}}" ngModel type="checkbox" value="{{s}}">
-      <label for="{{s}}2"> {{s}}</label>
-    </div>
-    <div *ngIf='i%5==3' class="col-lg-2">
-      <input id="{{s}}3" name="{{s}}" ngModel type="checkbox" value="{{s}}">
-      <label for="{{s}}3"> {{s}}</label>
-    </div>
-    <div *ngIf='i%5==4' class="col-lg-2">
-      <input id="{{s}}4" name="{{s}}" ngModel type="checkbox" value="{{s}}">
-      <label for="{{s}}4"> {{s}}</label>
-    </div>
-  </div>
-
-</form>
+<!--<form #book="ngForm" (ngSubmit)="onSubmit(book.value)">-->
+<!--  <div>-->
+<!--    <button class="btn btn-primary"-->
+<!--            type="submit">Book dates-->
+<!--    </button>-->
+<!--  </div>-->
+<!--  <div *ngFor="let s of available; index as i" class="form-group">-->
+<!--    <div *ngIf='i%5==0' class="col-lg-2">-->
+<!--      <input id="{{s}}" name="{{s}}" ngModel type="checkbox" value="{{s}}">-->
+<!--      <label for="{{s}}"> {{s}}</label>-->
+<!--    </div>-->
+<!--    <div *ngIf='i%5==1' class="col-lg-2">-->
+<!--      <input id="{{s}}1" name="{{s}}" ngModel type="checkbox" value="{{s}}">-->
+<!--      <label for="{{s}}1"> {{s}}</label>-->
+<!--    </div>-->
+<!--    <div *ngIf='i%5==2' class="col-lg-2">-->
+<!--      <input id="{{s}}2" name="{{s}}" ngModel type="checkbox" value="{{s}}">-->
+<!--      <label for="{{s}}2"> {{s}}</label>-->
+<!--    </div>-->
+<!--    <div *ngIf='i%5==3' class="col-lg-2">-->
+<!--      <input id="{{s}}3" name="{{s}}" ngModel type="checkbox" value="{{s}}">-->
+<!--      <label for="{{s}}3"> {{s}}</label>-->
+<!--    </div>-->
+<!--    <div *ngIf='i%5==4' class="col-lg-2">-->
+<!--      <input id="{{s}}4" name="{{s}}" ngModel type="checkbox" value="{{s}}">-->
+<!--      <label for="{{s}}4"> {{s}}</label>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</form>-->

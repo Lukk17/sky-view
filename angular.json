@@ -44,7 +44,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -61,6 +60,14 @@
                   "maximumWarning": "6kb"
                 }
               ]
+            },
+            "localDev": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.localDev.ts"
+                }
+              ]
             }
           }
         },
@@ -72,6 +79,9 @@
           "configurations": {
             "production": {
               "browserTarget": "sky-view:build:production"
+            },
+            "localDev": {
+              "browserTarget": "sky-view:build:localDev"
             }
           }
         },
@@ -92,7 +102,9 @@
               "node_modules/angular-calendar/css/angular-calendar.css",
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -126,7 +138,7 @@
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sky-view:serve:production"
+              "devServerTarget": "sky-view:serve:production",
             }
           }
         },
@@ -142,5 +154,7 @@
       }
     }
   },
-  "defaultProject": "sky-view"
+  "cli": {
+    "analytics": false
+  }
 }

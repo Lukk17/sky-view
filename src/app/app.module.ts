@@ -5,14 +5,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AuthComponent} from './auth/auth.component';
 import {HeaderComponent} from './header/header.component';
-import {AuthGuard} from "./auth/auth.guard";
-import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
-import {UserListComponent} from './user/userList/userList.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 import {HelloComponent} from './hello/hello.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MyOffersComponent} from './offer/myOffers/myOffers.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {OffersComponent} from './offer/offers/offers.component';
 import {AddOfferComponent} from './offer/add-offer/add-offer.component';
 import {UserDetailsComponent} from './user/user-details/user-details.component';
 import {OfferSearchComponent} from './offer/offer-search/offer-search.component';
@@ -22,15 +20,15 @@ import {MessageComponent} from './message/message.component';
 import {NewMessageComponent} from './message/new-message/new-message.component';
 import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
+import {NgOptimizedImage} from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AuthComponent,
-    UserListComponent,
     HelloComponent,
-    MyOffersComponent,
+    OffersComponent,
     AddOfferComponent,
     UserDetailsComponent,
     OfferSearchComponent,
@@ -47,9 +45,9 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
     MatDialogModule,
     BrowserAnimationsModule,
     CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory}),
+    NgOptimizedImage,
   ],
   providers: [
-    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

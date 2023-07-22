@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-4" *ngFor="let offer of offers; index as i;">
+    <div (click)="goToDetails(offer)" class="card center">
+      <img alt="Offer photo" class="card-img-top image" src="{{offer.photoPath}}">
+      <div class="card-body">
+        <h3 class="card-title">{{offer.hotelName}}</h3>
+        <p class="card-text">Location: {{offer.city}}, {{offer.country}}</p>
+        <p class="card-text">Room capacity: {{offer.roomCapacity}}</p>
+        <p class="card-text">Price: {{offer.price}}</p>
+      </div>
+    </div>
+  </div>
+</div>
