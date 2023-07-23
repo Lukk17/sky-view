@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AuthService} from './auth.service';
+import {SkyAuthService} from './sky-auth.service';
 import {HttpClient} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 import {NgForm} from '@angular/forms';
@@ -17,7 +17,7 @@ export class MessageService {
   private SEND_MESSAGE_URL = this.BASE_ADDRESS + `${environment.sendMessage}`;
   private DELETE_MESSAGE_URL = this.BASE_ADDRESS + `${environment.deleteMessage}`;
 
-  constructor(private auth: AuthService, private http: HttpClient) {
+  constructor(private auth: SkyAuthService, private http: HttpClient) {
   }
 
   private static buildMessage(messageForm: NgForm) {

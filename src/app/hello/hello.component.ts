@@ -18,7 +18,7 @@ export class HelloComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllOffers();
+    // this.getAllOffers();
   }
 
   getAllOffers() {

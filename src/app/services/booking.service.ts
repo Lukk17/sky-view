@@ -2,7 +2,7 @@ import {Injectable, OnInit} from '@angular/core';
 import {catchError, tap} from 'rxjs/operators';
 import {ResponseHandlerService} from './responseHandler.service';
 import {HttpClient} from '@angular/common/http';
-import {AuthService} from './auth.service';
+import {SkyAuthService} from './sky-auth.service';
 import {environment} from '../../environments/environment';
 import {Offer} from './offer.service';
 import {NgForm} from '@angular/forms';
@@ -17,7 +17,7 @@ export class BookingService implements OnInit {
   private ADD_BOOKING = this.BASE_ADDRESS + `${environment.addBooking}`;
   private DELETE_BOOKING = this.BASE_ADDRESS + `${environment.deleteBooking}`;
 
-  constructor(private http: HttpClient, private auth: AuthService) {
+  constructor(private http: HttpClient, private auth: SkyAuthService) {
   }
 
   private static buildBookingPayload(bookingForm: NgForm, offer: Offer) {

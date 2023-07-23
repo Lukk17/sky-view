@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {AuthService} from '../services/auth.service';
+import { AuthService } from '@auth0/auth0-angular';
 import {Router} from '@angular/router';
 
 @Component({
@@ -31,14 +31,14 @@ export class AuthComponent implements OnInit {
     const password = authForm.value.password;
 
     if (this.isLoginMode) {
-      this.login(email, password);
+      this.login();
     } else {
       this.signUp(email, password);
     }
   }
 
-  private login(email: string, password: string) {
-
+  private login() {
+    this.authService.loginWithRedirect();
   }
 
   private signUp(email: string, password: string) {

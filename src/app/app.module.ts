@@ -21,6 +21,7 @@ import {NewMessageComponent} from './message/new-message/new-message.component';
 import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {NgOptimizedImage} from '@angular/common';
+import {AuthModule} from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,13 @@ import {NgOptimizedImage} from '@angular/common';
     BrowserAnimationsModule,
     CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory}),
     NgOptimizedImage,
+    AuthModule.forRoot({
+      domain: 'lukk17.eu.auth0.com',
+      clientId: '9H4ckShWBYzA5gigTK0VnR1I1Hh7MHz0',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    }),
   ],
   providers: [
   ],

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AuthService} from './auth.service';
+import {SkyAuthService} from './sky-auth.service';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 import {throwError} from 'rxjs';
@@ -27,7 +27,7 @@ export class User {
 export class UserService {
   private userDetailsURL = '/auth/userDetails';
 
-  constructor(private http: HttpClient, private auth: AuthService) {
+  constructor(private http: HttpClient, private auth: SkyAuthService) {
   }
 
   private static handleError(errorResp: HttpErrorResponse) {

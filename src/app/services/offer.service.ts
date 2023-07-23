@@ -1,6 +1,6 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {AuthService} from './auth.service';
+import {SkyAuthService} from './sky-auth.service';
 import {catchError, tap} from 'rxjs/operators';
 import {NgForm} from '@angular/forms';
 import {environment} from '../../environments/environment';
@@ -23,7 +23,7 @@ export class OfferService implements OnInit {
   private DELETE_OFFER_URL = this.BASE_ADDRESS + `${environment.deleteOfferPath}`;
   private SEARCH_OFFER_URL = this.BASE_ADDRESS + `${environment.searchOfferPath}`;
 
-  constructor(private http: HttpClient, private auth: AuthService) {
+  constructor(private http: HttpClient, private auth: SkyAuthService) {
   }
 
   private static buildOffer(offerForm: NgForm) {

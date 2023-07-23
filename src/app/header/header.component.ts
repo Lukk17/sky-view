@@ -1,6 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from '../services/auth.service';
+import { AuthService } from '@auth0/auth0-angular';
+import { SkyAuthService } from '../services/sky-auth.service';
+
 import {NgForm} from '@angular/forms';
 import {OfferService} from '../services/offer.service';
 
@@ -18,11 +20,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private auth: AuthService,
     private offerService: OfferService,
+    private skyAuth: SkyAuthService,
   ) {
   }
 
   ngOnInit() {
-    this.userEmail = this.auth.getEmail();
+    this.userEmail = this.skyAuth.getEmail();
+    console.log(`auth email ${this.userEmail}`);
 
     if (this.userEmail != null) {
       this.isAuth = true;
@@ -37,9 +41,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/']).then();
   }
 
+  login() {
+    this.auth.loginWithRedirect();
+  }
+
   logout() {
     this.isAuth = false;
-    this.auth.logout();
+    // this.auth.logout();
   }
 
   ngOnDestroy(): void {

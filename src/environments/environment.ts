@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   localDev: false,
-  offerBaseAddress: 'skycloud.luksarna.com',
+  offerBaseAddress: 'https://skycloud.luksarna.com',
   allOfferPath: '/offer/api/offers',
   ownedOffersPath: '/offer/api/owner/offers',
   addOfferPath: '/offer/api/owner/offers',
@@ -13,13 +13,13 @@ export const environment = {
   deleteOfferPath: '/offer/api/owner/offers/',
   searchOfferPath: '/offer/offer/api/search',
 
-  messageBaseAddress: 'skycloud.luksarna.com',
+  messageBaseAddress: 'https://skycloud.luksarna.com',
   receivedMessages: '/msg/api/received',
   sentMessages: '/msg/api/sent',
   sendMessage: '/msg/api/send',
   deleteMessage: '/msg/api/delete/',
 
-  bookingBaseAddress: 'skycloud.luksarna.com',
+  bookingBaseAddress: 'https://skycloud.luksarna.com',
   bookings: '/booking/api/user/bookings',
   addBooking: '/booking/api/bookings',
   deleteBooking: '/booking/api/bookings/'

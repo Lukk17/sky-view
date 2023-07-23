@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~16.1.6",
     "@angular/platform-browser-dynamic": "~16.1.6",
     "@angular/router": "~16.1.6",
+    "@auth0/auth0-angular": "^2.2.0",
     "@nrwl/angular": "~16.5.3",
     "angular-calendar": "~0.31.0",
     "bootstrap": "~5.3.0",

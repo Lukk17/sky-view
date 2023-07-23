@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Offer, OfferService} from '../../services/offer.service';
-import {AuthService} from '../../services/auth.service';
+import {SkyAuthService} from '../../services/sky-auth.service';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {Booking, BookingService} from '../../services/booking.service';
@@ -18,7 +18,7 @@ export class OfferDetailsComponent implements OnInit {
   bookings: Booking[];
   isOwner = false;
 
-  constructor(private offerService: OfferService, private auth: AuthService, private bookingService: BookingService,
+  constructor(private offerService: OfferService, private auth: SkyAuthService, private bookingService: BookingService,
               private location: Location, private router: Router) {
   }
 

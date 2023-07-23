@@ -1,9 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {environment} from '../../environments/environment';
+
+
 
 @Injectable({providedIn: 'root'})
-export class AuthService {
+export class SkyAuthService {
   private LOCAL_STORAGE_TOKEN = 'token';
   private LOCAL_STORAGE_USER_EMAIL = 'userEmail';
 
@@ -20,7 +23,8 @@ export class AuthService {
   signUp(email: string, password: string) {
   }
 
-  login(email: string, password: string) {
+  login() {
+
   }
 
   logout() {
@@ -44,7 +48,12 @@ export class AuthService {
   }
 
   public getEmail() {
-    return 'offer@owner.com';
+    const localDev = `${environment.localDev}`;
+    if (localDev) {
+      return 'offer@owner.com';
+    } else {
+      return this.userEmail;
+    }
   }
 
 }
