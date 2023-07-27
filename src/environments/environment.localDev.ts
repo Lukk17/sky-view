@@ -7,7 +7,7 @@ export const environment = {
   addOfferPath: '/api/owner/offers',
   editOfferPath: '/api/owner/offers',
   deleteOfferPath: '/api/owner/offers/',
-  searchOfferPath: '/offer/api/search',
+  searchOfferPath: '/api/search',
 
   messageBaseAddress: 'http://localhost:5553',
   receivedMessages: '/api/received',

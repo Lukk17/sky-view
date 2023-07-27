@@ -20,7 +20,7 @@ export class AddOfferComponent implements OnInit {
   onSubmit(offerForm: NgForm) {
 
     this.offerService.addOffer(offerForm).subscribe(offer => {
-      this.router.navigate(['/offers']).then();
+      this.router.navigate(['/myOffers']).then();
     });
   }
 }

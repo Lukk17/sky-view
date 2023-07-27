@@ -36,16 +36,16 @@
       <!-- Right Links-->
       <ul class="navbar-nav ms-auto">
         <li *ngIf="isAuth" routerLinkActive="activated" class="nav-item">
-          <a routerLink="/messages" class="nav-link active">Messages</a>
+          <a routerLink="/messages" class="nav-link active"><i class="bi bi-chat-left-text-fill"></i></a>
         </li>
         <li *ngIf="isAuth" routerLinkActive="activated" class="nav-item">
-          <a routerLink="/userDetails" class="nav-link active">{{userEmail}}</a>
+          <a routerLink="/userDetails" class="nav-link active"><i class="bi bi-person-fill"></i></a>
         </li>
-        <li *ngIf="!isAuth" class="nav-item">
-          <button class="btn btn-primary btn-block" (click)="login()">Login</button>
+        <li *ngIf="!isAuth" class="nav-item horizontalSpacing">
+          <button class="btn btn-success btn-block" (click)="login()">Login</button>
         </li>
-        <li class="nav-item">
-          <a (click)="logout()" *ngIf="isAuth" class="nav-item nav-link active">Logout</a>
+        <li *ngIf="isAuth" class="nav-item horizontalSpacing">
+          <button class="btn btn-dark btn-block" (click)="logout()">Logout</button>
         </li>
         <!-- Search form -->
         <li>

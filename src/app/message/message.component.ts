@@ -14,7 +14,6 @@ export class MessageComponent implements OnInit {
   received: Message[];
   currentPage: string;
 
-
   constructor(private messageService: MessageService) {
   }
 
@@ -29,7 +28,6 @@ export class MessageComponent implements OnInit {
     });
 
     this.currentPage = this.RECEIVED_PAGE;
-
   }
 
   goToSent() {
@@ -37,7 +35,7 @@ export class MessageComponent implements OnInit {
     this.messageService.getSent().subscribe(messages => {
       this.sent = messages;
     });
-    console.log(this.currentPage);
+    console.log(`Sent: ${this.currentPage}`);
   }
 
   goToReceived() {
@@ -45,7 +43,7 @@ export class MessageComponent implements OnInit {
     this.messageService.getReceived().subscribe(messages => {
       this.received = messages;
     });
-    console.log(this.currentPage);
+    console.log(`Received: ${this.currentPage}`);
   }
 
   deleteMessage(id: number) {

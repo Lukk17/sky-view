@@ -14,11 +14,11 @@ export class HelloComponent implements OnInit {
   offers: Offer[];
   error = null;
 
-  constructor(private offerService: OfferService, private router: Router) {
+  constructor(private offerService: OfferService) {
   }
 
   ngOnInit() {
-    // this.getAllOffers();
+    this.getAllOffers();
   }
 
   getAllOffers() {

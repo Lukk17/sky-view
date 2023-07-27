@@ -56,7 +56,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   search(searchForm: NgForm) {
     this.offerService.searchOffer(searchForm.value.search).subscribe(offers => {
       this.offerService.searched = offers;
-      this.router.navigate(['/offerSearch']).then();
+      // mid navigating to "/home" required to reload "/offerSearch" items [workaround]
+      this.router.navigate(['/home']).then(value => {
+        this.router.navigate(['/offerSearch']).then();
+      });
     });
   }
 }

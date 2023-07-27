@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {User, UserService} from '../../services/user.service';
 import {PersonalBooking} from '../../services/booking.service';
+import {SkyAuthService} from '../../services/sky-auth.service';
 
 @Component({
   selector: 'app-user-details',
@@ -8,27 +8,20 @@ import {PersonalBooking} from '../../services/booking.service';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
-  user: User;
   error = null;
+  user = null;
   bookedOffers: PersonalBooking[] = [];
 
-  constructor(private userService: UserService) {
+  constructor(private skyAuthService: SkyAuthService) {
   }
 
   ngOnInit() {
-    this.user = new User();
-    this.getUserDetails();
+    this.user = this.getUserDetails();
     this.getUserBooked();
   }
 
   private getUserDetails() {
-    this.userService.getUserDetails().subscribe(user => {
-        this.user.email = user.email;
-        this.user.id = user.id;
-        this.user.roles = user.roles[0];
-      },
-      this.handleError
-    );
+    return this.skyAuthService.getEmail();
   }
 
   private getUserBooked() {

@@ -22,6 +22,8 @@ import {CalendarModule, DateAdapter} from 'angular-calendar';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {NgOptimizedImage} from '@angular/common';
 import {AuthModule} from '@auth0/auth0-angular';
+import {OffersOwnedComponent} from './offer/offers-owned/offers-owned.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import {AuthModule} from '@auth0/auth0-angular';
     OfferDetailsComponent,
     MessageComponent,
     NewMessageComponent,
+    OffersOwnedComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

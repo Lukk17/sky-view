@@ -10,19 +10,23 @@
 </div>
 <div class="writeNew">
   <a routerLink="/newMessage">
-    <span class="glyphicon glyphicon-pencil iconSize"></span>
-    <p>Write new message !</p>
+    <button class="btn btn-success">Send message</button>
   </a>
 </div>
 <div class="centerIt">
   <div *ngIf="currentPage==RECEIVED_PAGE">
     <div *ngFor="let message of received">
-      <div class="card center"> {{message.senderEmail}}
+      <div class="card center">{{message.createdTime.replace("T", " ")}}
         <div class="card-body">
-          <h3 class="card-title">{{message.text}}</h3>
-          <p class="card-text">Created: {{message.createdTime.replace("T", " ")}}</p>
+          <h3 class="card-title">{{message.senderEmail}}</h3>
+          <p class="card-text">{{message.text}}</p>
+          <div class="d-flex justify-content-evenly">
+            <button [routerLink]="['/newMessage']"
+                    [queryParams]="{ receiver: message.senderEmail }" class="btn btn-primary"> Reply
+            </button>
+            <button (click)="deleteMessage(message.id)" class="btn btn-danger">Delete message</button>
+          </div>
         </div>
-        <button (click)="deleteMessage(message.id)" class="btn btn-danger">Delete message</button>
       </div>
     </div>
   </div>
@@ -35,6 +39,12 @@
         <div class="card-body">
           <h3 class="card-title">{{message.text}}</h3>
           <p class="card-text">Created: {{message.createdTime.replace("T", " ")}}</p>
+          <div class="d-flex justify-content-evenly">
+            <button [routerLink]="['/newMessage']"
+                    [queryParams]="{ receiver: message.receiverEmail }" class="btn btn-primary"> Reply
+            </button>
+            <button (click)="deleteMessage(message.id)" class="btn btn-danger">Delete message</button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Offer, OfferService} from '../../services/offer.service';
 import {Router} from '@angular/router';
 
@@ -8,21 +8,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./offers.component.css']
 })
 export class OffersComponent implements OnInit {
-  offers: Offer[];
+  @Input() offers: Offer[];
   error = null;
 
-  constructor(private offerService: OfferService, private router: Router) {
+  constructor(private offerService: OfferService, private router: Router  ) {
   }
 
   ngOnInit(): void {
-    this.getUserOffers();
-  }
-
-  getUserOffers() {
-    this.offerService.getUserOffers().subscribe(offers => {
-        this.offers = offers;
-      }
-    );
   }
 
   editOffer(offer: Offer) {
@@ -32,6 +24,6 @@ export class OffersComponent implements OnInit {
 
   goToDetails(offer: Offer) {
     this.offerService.detailedOffer = offer;
-    this.router.navigate(['/offerDetails']).then();
+    this.router.navigate(['/offerDetails'], { queryParams: { offerId: offer.id } }).then();
   }
 }

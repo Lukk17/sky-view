@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Offer, OfferService} from '../../services/offer.service';
 import {SkyAuthService} from '../../services/sky-auth.service';
 import {Location} from '@angular/common';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Booking, BookingService} from '../../services/booking.service';
 import {NgForm} from '@angular/forms';
 
@@ -19,7 +19,7 @@ export class OfferDetailsComponent implements OnInit {
   isOwner = false;
 
   constructor(private offerService: OfferService, private auth: SkyAuthService, private bookingService: BookingService,
-              private location: Location, private router: Router) {
+              private location: Location, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
