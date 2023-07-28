@@ -23,7 +23,7 @@ import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {NgOptimizedImage} from '@angular/common';
 import {AuthModule} from '@auth0/auth0-angular';
 import {OffersOwnedComponent} from './offer/offers-owned/offers-owned.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -59,14 +59,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
       }
     }),
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-
-//  need to install angular material lib to use import:
-//  import {MatDialogModule} from '@angular/material/dialog';
-
-//  npm install --save @angular/material @angular/cdk
 }

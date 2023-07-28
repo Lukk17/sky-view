@@ -13,8 +13,8 @@ import {OffersOwnedComponent} from './offer/offers-owned/offers-owned.component'
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: HelloComponent},
+  {path: '', component: HelloComponent},
+  {path: 'home', redirectTo: '', pathMatch: 'full' },
   {path: 'auth', component: AuthComponent},
   {path: 'myOffers', component: OffersOwnedComponent},
   {path: 'addOffer', component: AddOfferComponent},

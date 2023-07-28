@@ -9,6 +9,15 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 any of the source files.
 
 
+
+----------
+
+## Compile prod app
+
+```
+ng build --configuration production 
+```
+
 ----------
 
 ## Updating dependencies

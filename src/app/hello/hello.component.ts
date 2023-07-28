@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Offer, OfferService} from '../services/offer.service';
-import {Router} from '@angular/router';
-import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -22,8 +20,6 @@ export class HelloComponent implements OnInit {
   }
 
   getAllOffers() {
-    console.log(`Is localDev: ${environment.localDev}`);
-    console.log(`Is prod: ${environment.production}`);
     this.offerService.getAllOffers()
       .pipe()
       .subscribe(offers => {

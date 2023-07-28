@@ -10,8 +10,9 @@ export class SkyAuthService {
   private LOCAL_STORAGE_TOKEN = 'token';
   private LOCAL_STORAGE_USER_EMAIL = 'userEmail';
 
-  private userToken;
-  private userEmail;
+  private userToken: string;
+  private userEmail: string;
+  private localDev = `${environment.localDev}`;
 
   constructor(
     private http: HttpClient,
@@ -37,19 +38,19 @@ export class SkyAuthService {
     const token = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_TOKEN));
     const email = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_USER_EMAIL));
     if (email && token) {
-      this.userToken.next(token);
-      this.userEmail.next(email);
+      this.userToken = token;
+      this.userEmail = email;
     }
   }
 
   public getAuthHeader() {
-    // return new HttpHeaders({Authorization: this.authType.value + ' ' + this.userToken.value});
-    return new HttpHeaders({'X-Forwarded-User': 'offer@owner.com'});
+      if (this.localDev === 'true') {
+          return new HttpHeaders({'X-Forwarded-User': 'offer@owner.com'});
+      }
   }
 
   public getEmail() {
-    const localDev = `${environment.localDev}`;
-    if (localDev) {
+    if (this.localDev === 'true') {
       return 'offer@owner.com';
     } else {
       return this.userEmail;
